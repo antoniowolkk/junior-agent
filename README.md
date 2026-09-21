@@ -51,6 +51,7 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | `skills/decision-log/` | A reviewable TSV trail for unattended work. |
 | `skills/unslop/` | Cut AI tells from anything that ships. |
 | `skills/setup-project/` | Install this pack into a repo and fill it from the code. |
+| `skills/grow-skill/` | Research, write, and PR one new skill. The pack grows itself; you review. |
 | `templates/AGENTS.md` | The main file. Rules, commands, conventions, guardrails. |
 | `templates/variants/` | Platform sections to paste in: frontend, fullstack, backend API, Flutter. |
 | `templates/docs/prd.md` | What to build and for whom. **Yours to write.** |
@@ -58,6 +59,9 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | `templates/KICKOFF-PROMPT.md` | The prompt you paste to start. |
 | `docs/setup.md` | Detailed setup instructions, written for the agent to read. |
 | `docs/working-with-an-agent.md` | How to run a project with an agent when you do not code. |
+| `CONTRIBUTING-SKILLS.md` | The contract every skill must satisfy, human- or agent-written. |
+| `BACKLOG.md` | The queue `/grow-skill` works from. |
+| `scripts/validate-skills.sh` | Mechanical checks on every `SKILL.md`. Run before any skill PR. |
 | `example/` | A complete filled-in project to copy the standard from. |
 
 ## The three rules that make it work
@@ -80,6 +84,32 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 - [ ] `CLAUDE.md` symlink exists
 - [ ] Skills installed and discoverable
 - [ ] You can answer: what business outcome does this project create?
+
+## The pack grows itself
+
+`/grow-skill` researches one backlog item, writes the skill, and opens a draft pull request. It
+reads three sources — the gaps between the skills already here, outside prior art, and recurring
+friction in local session logs — and it never merges. You are the merge authority, same as
+everywhere else in this pack.
+
+The guardrails are structural, not promises:
+
+- [`BACKLOG.md`](BACKLOG.md) is the queue. The agent proposes rows; only a human promotes one to
+  the top.
+- [`CONTRIBUTING-SKILLS.md`](CONTRIBUTING-SKILLS.md) is the contract, including the exact paths an
+  agent-authored PR may touch.
+- `./scripts/validate-skills.sh` fails the run before a PR exists if the frontmatter, naming,
+  links, or README row are wrong.
+- One skill per PR, opened as a draft, labelled `agent-authored`.
+
+Run it on demand:
+
+```bash
+/grow-skill
+```
+
+Or schedule it. In Claude Code, ask for a weekly scheduled task that runs `/grow-skill` in this
+repo; the run aborts on a dirty tree or an open `skill/*` PR, so a missed review never stacks up.
 
 ## Credit
 
