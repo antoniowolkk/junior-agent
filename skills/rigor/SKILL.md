@@ -23,6 +23,7 @@ This file is the spine. Reach for a companion when the route calls for it.
 | A reviewable trail for unattended work | **decision-log** |
 | Any prose that ships | **unslop** |
 | Install this pack into a repo | **setup-project** |
+| Add a new skill to this pack | **grow-skill** |
 
 ## 0. Precedence
 
