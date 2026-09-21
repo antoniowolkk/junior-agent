@@ -18,7 +18,7 @@ this skill exists to satisfy.
 Abort the run, without a PR, if any holds:
 
 - The working tree is dirty. Report and stop.
-- Three or more agent-authored pull requests are already open. Count every open PR whose branch
+- Six or more agent-authored pull requests are already open. Count every open PR whose branch
   matches `skill/*`, `backlog/*`, or `maintain/*`:
 
   ```bash
@@ -26,9 +26,9 @@ Abort the run, without a PR, if any holds:
     -q '[.[] | select(.headRefName | test("^(skill|backlog|maintain)/"))] | length'
   ```
 
-  At three or more, stop before any research — no reading, no searching, no writing. The queue is
+  At six or more, stop before any research — no reading, no searching, no writing. The queue is
   full until a human merges or closes one. This is the backpressure that keeps the cadence honest:
-  the agent may run ahead of review by three, never more.
+  the agent may run ahead of review by six, never more.
 - The pack is at its cap. Twelve skills is the ceiling; past that, routing gets worse, not better,
   and **maintain** is the only remaining mode.
 
@@ -76,13 +76,29 @@ the backlog row gets marked `rejected` with the reason:
 
 ## 2. Research
 
-Three sources. Use all that apply, and record where each claim came from.
+Three sources, gone into deep rather than skimmed. A run that produces a skill is expensive for
+the reviewer to check, so it earns that cost by being thorough here, not by being fast.
 
 | Source | How |
 | --- | --- |
-| **Repo gaps** | Read every existing `skills/*/SKILL.md` and `templates/AGENTS.md`. Name the exact gap the new skill fills and the existing skill it most nearly overlaps. If the overlap is more than a third, extend that skill instead and close the backlog row as `rejected`. |
-| **Web** | Search for prior art: other skill packs, agent-engineering write-ups, primary docs for any tool the skill drives. Prefer primary sources. Verify any command the skill will tell an agent to run. Anything you cannot verify is dropped, not hedged. |
-| **Session transcripts** | Grep `~/.claude/projects/**/*.jsonl` for recurring friction on this topic — repeated corrections, retried commands, the same question asked across sessions. Quote the pattern, never the content: no file contents, paths outside this repo, credentials, or personal data enter the skill or the PR. |
+| **Repo gaps** | Read every existing `skills/*/SKILL.md` and `templates/AGENTS.md` in full, not just headings. Name the exact gap the new skill fills and the existing skill it most nearly overlaps. If the overlap is more than a third, extend that skill instead and close the backlog row as `rejected`. |
+| **Web** | Search for prior art: other skill packs, agent-engineering write-ups, primary docs for any tool the skill drives. Open and read at least two independent primary sources before writing a step from them — a blog post summarizing a spec is not the spec. Prefer the tool's own documentation or the paper over a tutorial about it. Verify any command the skill will tell an agent to run by executing it, not by reading that it should work. Anything you cannot verify is dropped, not hedged. |
+| **Session transcripts** | Grep `~/.claude/projects/**/*.jsonl` for recurring friction on this topic — repeated corrections, retried commands, the same question asked across sessions. Do not stop at a count: read enough surrounding context in a handful of matches to tell a real recurring pattern from a coincidence of wording, and say how many sessions it spans. Quote the pattern, never the content: no file contents, paths outside this repo, credentials, or personal data enter the skill or the PR. |
+
+### Cross-verify before writing
+
+Before step 3, every non-obvious claim needs two independent legs, not one:
+
+- A step drawn from the web needs a second source that agrees with it, or a local run that
+  confirms it, before it becomes an instruction.
+- A step drawn from a repo gap needs the web or a transcript pattern behind it too — "nothing
+  covers this" is not by itself evidence that a skill should.
+- A step drawn from transcripts needs either a primary source that explains *why* the friction
+  happens, or a repo gap that names where the fix belongs.
+
+A claim with only one leg stays a **guess** and stays out of the skill, even if it looks right.
+This is slower than writing from a single search result, and that is the point: heavier research
+now is cheaper than a wrong instruction a reviewer has to catch, or worse, misses.
 
 Label every claim in your notes `measured`, `inferred`, or `guess`. A `guess` may not become an
 instruction in the skill.

@@ -128,11 +128,11 @@ Run it on demand:
 ```
 
 Or put it on a timer. Frequency is safe to raise because the run is gated, not the schedule: it
-stops before doing any research once three agent-authored pull requests are open, and when the
+stops before doing any research once six agent-authored pull requests are open, and when the
 backlog is empty it either proposes new candidates or sharpens an existing skill rather than
 inventing a twelfth one. Twelve skills is the hard cap.
 
-So the review queue sets the real pace. The agent may run up to three pull requests ahead of you
+So the review queue sets the real pace. The agent may run up to six pull requests ahead of you
 and then waits. Your side of the deal is roughly five minutes per pull request.
 
 ## Credit
