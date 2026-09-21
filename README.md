@@ -108,8 +108,10 @@ Run it on demand:
 /grow-skill
 ```
 
-Or schedule it. In Claude Code, ask for a weekly scheduled task that runs `/grow-skill` in this
-repo; the run aborts on a dirty tree or an open `skill/*` PR, so a missed review never stacks up.
+Or schedule it daily. A daily run is safe because most days it is *supposed* to produce nothing:
+it aborts if the previous PR is still unreviewed, and when the backlog is empty it either proposes
+new candidates or sharpens an existing skill rather than inventing a twelfth one. Twelve skills is
+the hard cap. Your side of the deal is roughly five minutes on the days a PR appears.
 
 ## Credit
 
