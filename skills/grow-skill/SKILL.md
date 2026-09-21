@@ -18,8 +18,17 @@ this skill exists to satisfy.
 Abort the run, without a PR, if any holds:
 
 - The working tree is dirty. Report and stop.
-- A branch matching `skill/*` already has an open PR. One in flight at a time, so a daily run can
-  never outpace review.
+- Three or more agent-authored pull requests are already open. Count every open PR whose branch
+  matches `skill/*`, `backlog/*`, or `maintain/*`:
+
+  ```bash
+  gh pr list --state open --json headRefName \
+    -q '[.[] | select(.headRefName | test("^(skill|backlog|maintain)/"))] | length'
+  ```
+
+  At three or more, stop before any research — no reading, no searching, no writing. The queue is
+  full until a human merges or closes one. This is the backpressure that keeps the cadence honest:
+  the agent may run ahead of review by three, never more.
 - The pack is at its cap. Twelve skills is the ceiling; past that, routing gets worse, not better,
   and **maintain** is the only remaining mode.
 

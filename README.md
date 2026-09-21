@@ -108,10 +108,13 @@ Run it on demand:
 /grow-skill
 ```
 
-Or schedule it daily. A daily run is safe because most days it is *supposed* to produce nothing:
-it aborts if the previous PR is still unreviewed, and when the backlog is empty it either proposes
-new candidates or sharpens an existing skill rather than inventing a twelfth one. Twelve skills is
-the hard cap. Your side of the deal is roughly five minutes on the days a PR appears.
+Or put it on a timer. Frequency is safe to raise because the run is gated, not the schedule: it
+stops before doing any research once three agent-authored pull requests are open, and when the
+backlog is empty it either proposes new candidates or sharpens an existing skill rather than
+inventing a twelfth one. Twelve skills is the hard cap.
+
+So the review queue sets the real pace. The agent may run up to three pull requests ahead of you
+and then waits. Your side of the deal is roughly five minutes per pull request.
 
 ## Credit
 
