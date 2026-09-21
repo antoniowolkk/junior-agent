@@ -62,11 +62,29 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 
 ## The three rules that make it work
 
-**Safe.** Section 7 of `AGENTS.md` is strict: the agent stops and asks before anything hard to undo. Deleting, pushing, deploying, touching a database, installing packages, handling secrets. Keep it that way while you are learning. Every skill here is subordinate to it, so where a skill says proceed and section 7 says ask, the agent asks.
+**Safe.** Section 7 of `AGENTS.md` is strict: the agent stops and asks before anything hard to undo. Deleting, pushing, deploying, touching a database, installing packages, handling secrets. Keep it that way while you are learning. Every skill here is subordinate to it, so where a skill says proceed and section 7 says ask, the agent asks. Nothing irreversible happens without you.
 
-**Rigorous.** `skills/rigor/` is the working method. Name which kind of task this is before acting. Reproduce a bug before fixing it. Name the data shape before writing logic. Prove the result against the real artifact, not a green build. Label every claim as measured, inferred, or guess.
+**Rigorous.** `skills/rigor/` is the working method. Name which kind of task this is before acting. Reproduce a bug before fixing it. Name the data shape before writing logic. Prove the result against the real artifact, not a green build. Label every claim as measured, inferred, or guess, so you can tell which parts of an answer were actually checked.
 
-**Powerful.** Section 6, TDD. The agent writes a failing test first, **you review the test**, then it writes code until the test passes. Reviewing a test is far easier than reviewing code: the test states in plain terms what the thing should do. If it says the wrong thing, you catch it before any code exists. This is the main defense against an agent confidently building the wrong thing.
+**Powerful.** Section 6, TDD. The agent writes a failing test first, **you review the test**, then it writes code until the test passes. Reviewing a test is far easier than reviewing code: the test states in plain terms what the thing should do. If it says the wrong thing, you catch it before any code exists — while it is still one paragraph instead of four hundred lines. This is the main defense against an agent confidently building the wrong thing.
+
+Two things follow from those rules. **The context survives the session**: `AGENTS.md` holds rules, commands, and conventions, `docs/prd.md` holds the outcome, ADRs hold why a past decision was made, so the agent stops re-deriving the project from scratch and stops re-litigating decisions you already made. And **hard tasks get a named tool instead of a longer prompt**: tracing unfamiliar code, designing a boundary, finding what a change breaks, reviewing adversarially, running work unattended — each is a skill with its own method and output format, so the work is legible afterwards.
+
+**The cost is speed.** This produces less code per hour on purpose. Worth it when the code has to be right and you are the one merging it. Overhead on a throwaway script.
+
+## Why this instead of a bare agent
+
+A stock coding agent optimises for finishing the turn. It will guess a file path, assume a data shape, declare success on a green build, and take an irreversible action because the task implied it. None of that is a bug in the model; it is what "be helpful, quickly" produces. This pack changes the objective.
+
+Against **a bare agent with no project files**, the difference is memory and authority. Conventions and commands live in `AGENTS.md` instead of in a prompt you retype, decisions live in ADRs instead of in a chat you closed, and the permission boundary is written down where every skill can see it rather than negotiated per request.
+
+Against **a big CLAUDE.md of rules**, the difference is routing. Rules in one flat file all compete for attention and quietly stop being applied on long sessions. Here the method is split into skills that load when the task calls for them, so the agent gets the tracing method when it is tracing and the review method when it is reviewing, each at full strength.
+
+Against **agent packs built for speed** (scaffold generators, autonomous PR bots, "ship it" loops), the difference is who holds the merge. Those are built to reduce your involvement. This is built to make your involvement cheap: review a test instead of a diff, read a cited investigation instead of a summary, approve a decision instead of discovering it. You stay the merge authority by design, not by remembering to check.
+
+Against **just being careful in your prompts**, the difference is that care is not a habit here, it is structure. Reproduce-before-fix and prove-against-the-real-thing hold on turn eighty of a long session, when your own attention has gone.
+
+The name is the point. A junior engineer who asks before doing anything permanent, writes the test first, and shows their evidence is more useful on a codebase you care about than a fast one who does not.
 
 ## Keep it alive
 
