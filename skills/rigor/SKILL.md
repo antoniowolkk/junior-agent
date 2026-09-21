@@ -15,6 +15,7 @@ This file is the spine. Reach for a companion when the route calls for it.
 
 | Need | Skill |
 | --- | --- |
+| Turn a vague defect report into a failing test | **reproduce** |
 | Understand code or its rationale before touching it | **investigate** |
 | Design types and boundaries before writing code | **architect** |
 | Know what a change breaks elsewhere | **blast-radius** |

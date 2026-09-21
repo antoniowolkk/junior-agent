@@ -8,7 +8,7 @@ Status values: `proposed` (idea, unresearched) · `researching` (agent claimed i
 
 | Status | Skill | Why it would earn a slot | Source |
 | --- | --- | --- | --- |
-| proposed | `reproduce` | `rigor` says "reproduce first" but gives no procedure for building a minimal deterministic repro from a vague report. | repo gap |
+| researching | `reproduce` | `rigor` says "reproduce first" but gives no procedure for building a minimal deterministic repro from a vague report. | repo gap |
 | proposed | `migrate` | Schema and data migrations are the highest blast-radius change a junior agent makes, and no skill covers reversibility or backfill. | repo gap |
 | proposed | `bisect` | Regression hunting across history is mechanical and currently improvised every time. | repo gap |
 | proposed | `handoff` | Ending a session so the next one (or the next agent) resumes without re-deriving context. Complements `decision-log`. | repo gap |
