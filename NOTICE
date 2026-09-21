@@ -1,0 +1,25 @@
+# Notice
+
+## pstack
+
+The method in `skills/rigor/SKILL.md` and the skills `architect`, `interrogate`,
+`swarm`, `blast-radius`, `decision-log`, `investigate`, and `unslop` are adapted
+from pstack by poteto (Lauren Tan).
+
+    pstack
+    Copyright (c) 2026 Lauren Tan
+    MIT License
+    https://github.com/cursor/plugins/tree/main/pstack
+
+pstack is a Cursor plugin of 50 skills and 23 playbooks. This pack condenses that
+method into nine skills rewritten for Claude Code: Cursor-specific references and
+hardcoded model slugs are removed, and everything is made subordinate to section 7
+of `AGENTS.md`, which keeps the human as the merge authority.
+
+The wording here is rewritten, not copied. The ideas, the principle names, the
+routing table, and the evidence ladder are Lauren Tan's.
+
+## Workshop
+
+The AGENTS.md / PRD / ADR structure in `templates/` comes from the "Agentic AI in
+the SDLC" workshop, 7 September 2026.

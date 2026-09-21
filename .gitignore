@@ -1,0 +1,7 @@
+.DS_Store
+.reference/
+decisions.tsv
+.audit/
+node_modules/
+.env
+.env.*
