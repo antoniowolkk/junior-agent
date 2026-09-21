@@ -1,4 +1,4 @@
-# rigor
+# junior-agent
 
 Depth before speed. A Claude Code plugin that makes an agent work like a careful engineer instead of a fast one: name the task before acting, reproduce before fixing, prove against the real thing, and stop at anything hard to undo.
 
@@ -13,7 +13,7 @@ Written so it works for someone who does not code. Section 7 of `AGENTS.md` is s
 
 ## Install
 
-Add this repo as a plugin marketplace in Claude Code, then install `rigor`. The nine skills become available as `/rigor`, `/architect`, and so on.
+Add this repo as a plugin marketplace in Claude Code, then install `junior-agent`. The nine skills become available as `/rigor`, `/architect`, and so on.
 
 Or copy the skills by hand into any project:
 
