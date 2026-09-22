@@ -1,6 +1,6 @@
 ---
 name: descope
-description: Decide whether a change should be built at all before designing it. Use when a request arrives as a solution rather than a problem, when a ticket names a library or a component to add, when scope grows mid-task, or for "do we need this", "is this worth building", "can we skip this", "/descope". Skip for a bug with a reproduction — that work is already justified.
+description: Decide whether a change should be built at all before designing it. Use when a request arrives as a solution rather than a problem, when a ticket names a library or a component to add, when scope grows mid-task, or for "do we need this", "is this worth building", "can we skip this", "/descope" (Codex CLI: $descope). Skip for a bug with a reproduction — that work is already justified.
 ---
 
 # Descope

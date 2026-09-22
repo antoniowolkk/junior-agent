@@ -1,6 +1,6 @@
 ---
 name: update-pack
-description: Bring an installed copy of this pack up to date without destroying local edits. Use for /update-pack, "update junior-agent", "is my copy of the skills stale", "a new version came out", or after pulling a repo whose .claude/skills were copied in by hand months ago.
+description: Bring an installed copy of this pack up to date without destroying local edits. Use for /update-pack (Codex CLI: $update-pack), "update junior-agent", "is my copy of the skills stale", "a new version came out", or after pulling a repo whose .claude/skills or .agents/skills were copied in by hand months ago.
 ---
 
 # Update Pack
@@ -19,22 +19,26 @@ An update is a class of change where being wrong is expensive and quiet: a clobb
 
 Reading, fetching to a temp directory, and showing a diff need no permission. Every write into the target repo needs an explicit yes, after the plan in section 5 has been shown.
 
+A repo may have skills installed at `.claude/skills/` (Claude Code), `.agents/skills/` (Codex CLI), both, or neither. Treat each directory that exists as its own install: same procedure, own stamp, own three-way compare. When both exist they were populated from the same commit and stay in lockstep — a skill that replaces in one replaces in the other, in the same step, from the same upstream copy.
+
 Hard rules, no exceptions:
 
 | Path | This skill may |
 | --- | --- |
-| `.claude/skills/**` | replace, after showing the diff and asking |
-| `.claude/skills/.junior-agent-version` | rewrite, as the last step |
-| `AGENTS.md`, `CLAUDE.md`, `docs/prd.md`, `docs/adr/**` | read and report drift only — **never write** |
+| `.claude/skills/**`, `.agents/skills/**` | replace, after showing the diff and asking |
+| `.claude/skills/.junior-agent-version`, `.agents/skills/.junior-agent-version` | rewrite, as the last step |
+| `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `docs/prd.md`, `docs/adr/**` | read and report drift only — **never write** |
 | everything else in the repo | nothing |
 
 ## 1. Find the install and read the stamp
 
 ```bash
-ls .claude/skills/ 2>/dev/null
-cat .claude/skills/.junior-agent-version 2>/dev/null
+ls .claude/skills/ .agents/skills/ 2>/dev/null
+cat .claude/skills/.junior-agent-version .agents/skills/.junior-agent-version 2>/dev/null
 claude plugin list 2>/dev/null | grep -i junior
 ```
+
+Say which directories exist before doing anything else. If their stamps disagree (different commit or version), do not assume — report the mismatch and ask which one the human trusts, or run each as an independent update.
 
 The stamp is written by `/setup-project` and by this skill. It records what was installed and from where:
 
@@ -51,14 +55,16 @@ method: copy
 
 ## 2. Route by install method
 
+Decide this once per directory found in section 1 — a repo can be a plugin install for Claude Code and a manual `.agents/skills/` copy for Codex CLI at the same time, and each follows its own row:
+
 | What you found | Do this |
 | --- | --- |
-| Installed as a Claude Code plugin | **Stop.** Tell the human to update it through `/plugin` — the plugin system owns those files. Running this skill over them creates a second, divergent copy. |
-| `.claude/skills/` with a stamp | Continue at section 3. |
-| `.claude/skills/` with no stamp | Continue in degraded mode, section 6. |
-| Neither | Not an install. Offer `/setup-project` instead. |
+| Claude Code plugin, no `.claude/skills/` in the repo | **Stop on that directory.** Tell the human to update it through `/plugin` — the plugin system owns those files. Running this skill over it creates a second, divergent copy. |
+| `.claude/skills/` or `.agents/skills/` with a stamp | Continue at section 3 for that directory. |
+| `.claude/skills/` or `.agents/skills/` with no stamp | Continue in degraded mode, section 6, for that directory. |
+| None of the above, for either directory | Not an install. Offer `/setup-project` instead. |
 
-Say which case you are in before doing anything else.
+Say which case applies to each directory you found before doing anything else.
 
 ## 3. Fetch upstream read-only
 
@@ -76,13 +82,15 @@ If the stamp's `commit` is not in the clone, say so and fall back to degraded mo
 
 ## 4. Classify every skill three ways
 
-For each skill directory, compare three versions: **base** (upstream at the stamped commit), **local** (what is installed now), **head** (upstream now).
+For each skill directory found in section 1 (`.claude/skills/`, `.agents/skills/`, or both), and for each skill inside it, compare three versions: **base** (upstream at the stamped commit), **local** (what is installed now), **head** (upstream now).
 
 ```bash
 git -C "$tmp" show <stamped-commit>:skills/<name>/SKILL.md | shasum
-shasum .claude/skills/<name>/SKILL.md
+shasum <install-dir>/<name>/SKILL.md   # <install-dir> is .claude/skills or .agents/skills
 shasum "$tmp/skills/<name>/SKILL.md"
 ```
+
+If both install directories are present, run the classification once — the files are byte-identical when both are current with the same stamp — but confirm that with a hash before assuming it, and always apply the resulting write to both directories.
 
 | base vs local | base vs head | Verdict | Action |
 | --- | --- | --- | --- |
@@ -140,12 +148,14 @@ Section 7 of their own `AGENTS.md` is the one file where a silent overwrite is m
 
 ## 8. Restamp and verify
 
-After writing, and only after:
+After writing, and only after, write the stamp into every install directory you touched:
 
 ```bash
-printf '# junior-agent install stamp - do not edit by hand\nversion: %s\ncommit: %s\nsource: %s\ninstalled: %s\nmethod: copy\n' \
-  "$version" "$(git -C "$tmp" rev-parse HEAD)" "$source" "$(date +%F)" \
-  > .claude/skills/.junior-agent-version
+for dir in .claude/skills .agents/skills; do
+  [ -d "$dir" ] && printf '# junior-agent install stamp - do not edit by hand\nversion: %s\ncommit: %s\nsource: %s\ninstalled: %s\nmethod: copy\n' \
+    "$version" "$(git -C "$tmp" rev-parse HEAD)" "$source" "$(date +%F)" \
+    > "$dir/.junior-agent-version"
+done
 rm -rf "$tmp"
 ```
 
@@ -153,12 +163,12 @@ rm -rf "$tmp"
 
 Then hand back:
 
-- [ ] Install method named, and plugin installs routed to `/plugin`
+- [ ] Install method named per directory, and plugin installs routed to `/plugin`
 - [ ] Every verdict backed by a hash that was computed, not assumed
-- [ ] No file outside `.claude/skills/` was written
+- [ ] No file outside the install directories in use was written
 - [ ] Every conflict decided by the human, not by a default
 - [ ] Template drift reported, not applied
-- [ ] Stamp rewritten with the new commit
+- [ ] Stamp rewritten with the new commit, in every directory in use
 - [ ] Temp clone removed
 
 Anything unchecked, say which and why.

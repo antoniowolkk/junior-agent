@@ -1,6 +1,6 @@
 ---
 name: swarm
-description: Fan out N parallel subagents over slices of one job, drain them, and return a single consolidated report. Use for /swarm, "swarm this", parallel coverage sweeps, races between approaches, and wide exploration.
+description: Fan out N parallel subagents over slices of one job, drain them, and return a single consolidated report. Use for /swarm (Codex CLI: $swarm), "swarm this", parallel coverage sweeps, races between approaches, and wide exploration.
 ---
 
 # Swarm

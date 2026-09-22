@@ -116,13 +116,14 @@ Every ADR must contain rejected alternatives and real costs. An ADR listing only
 - Section 6b: keep the rigor reference as written. Do not delete it.
 - Section 8: list the ADRs you just created.
 
-Then install the skills so section 6b resolves to a real file:
+Then install the skills so section 6b resolves to a real file, into whichever the human's agent tool(s) read:
 
 ```bash
-mkdir -p .claude/skills && cp -r skills/* .claude/skills/
+mkdir -p .claude/skills && cp -r skills/* .claude/skills/   # Claude Code
+mkdir -p .agents/skills && cp -r skills/* .agents/skills/   # Codex CLI — same SKILL.md files
 ```
 
-Run it and confirm `.claude/skills/rigor/SKILL.md` exists. Section 6b points at that path; if the file is missing, the reference is a dead end and the agent silently loses the method. The other skills (`architect`, `investigate`, `blast-radius`, `interrogate`, `swarm`, `decision-log`, `unslop`) install alongside it and are referenced from rigor.
+Run whichever applies and confirm `rigor/SKILL.md` exists under each directory you populated. Section 6b points at the Claude Code path; if the file is missing there, the reference is a dead end and the agent silently loses the method. The other skills (`architect`, `investigate`, `blast-radius`, `interrogate`, `swarm`, `decision-log`, `unslop`) install alongside it and are referenced from rigor.
 
 **STOP.** Show the complete file. Get approval. Then write it.
 
@@ -207,8 +208,8 @@ Before you report done, verify every line:
 - [ ] Every section-4 command was actually run, or is explicitly marked unverified
 - [ ] Every path in section 3 exists — check them
 - [ ] A symlink exists and resolves for every agent tool in use (`CLAUDE.md`, `GEMINI.md`, ...); not needed for Codex CLI or Cursor
-- [ ] `.claude/skills/rigor/SKILL.md` exists — section 6b of AGENTS.md points at it
-- [ ] The companion skills are installed alongside it in `.claude/skills/`
+- [ ] `rigor/SKILL.md` exists in every skills directory in use (`.claude/skills/`, `.agents/skills/`) — section 6b of AGENTS.md points at the Claude Code path
+- [ ] The companion skills are installed alongside it in each of those directories
 - [ ] Section 6b survived editing and was not deleted as boilerplate
 - [ ] Guardrails name this project's real dangers, not only generic ones
 - [ ] ADRs list rejected alternatives and real costs

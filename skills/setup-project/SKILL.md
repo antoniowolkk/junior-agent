@@ -1,6 +1,6 @@
 ---
 name: setup-project
-description: Install this pack's AGENTS.md, PRD, ADR, and guardrails into a project, whether new or existing, filling values from what is actually in the repo. Use for /setup-project, "set up AGENTS.md here", or onboarding this pack into a codebase.
+description: Install this pack's AGENTS.md, PRD, ADR, and guardrails into a project, whether new or existing, filling values from what is actually in the repo. Use for /setup-project (Codex CLI: $setup-project), "set up AGENTS.md here", or onboarding this pack into a codebase.
 ---
 
 # Set up a project
@@ -30,8 +30,11 @@ If one exists, do not overwrite it. Show the human a diff-shaped summary: what t
 templates/AGENTS.md          -> <repo>/AGENTS.md
 templates/docs/prd.md        -> <repo>/docs/prd.md
 templates/docs/adr/*.md      -> <repo>/docs/adr/
-skills/                      -> <repo>/.claude/skills/   (or install this repo as a plugin)
+skills/                      -> <repo>/.claude/skills/   (Claude Code — or install this repo as a plugin)
+skills/                      -> <repo>/.agents/skills/   (Codex CLI — same files, same SKILL.md format)
 ```
+
+Copy into whichever of these the human's agent tools read. Both can be populated from the same `skills/` source; they hold identical files.
 
 `AGENTS.md` is read natively by OpenAI Codex CLI and Cursor — no link needed for those. For any other tool in use, ask which and symlink its filename:
 
@@ -40,12 +43,14 @@ ln -s AGENTS.md CLAUDE.md     # Claude Code
 ln -s AGENTS.md GEMINI.md     # Gemini CLI
 ```
 
-When you copy the skills by hand rather than installing the plugin, write an install stamp beside them. `/update-pack` reads it as the base of a three-way compare; without it, a later update cannot tell a local edit from an upstream change.
+When you copy the skills by hand rather than installing the plugin, write an install stamp beside them — one per directory you populated. `/update-pack` reads it as the base of a three-way compare; without it, a later update cannot tell a local edit from an upstream change.
 
 ```bash
-printf '# junior-agent install stamp - do not edit by hand\nversion: %s\ncommit: %s\nsource: %s\ninstalled: %s\nmethod: copy\n' \
-  "$version" "$commit" "$source" "$(date +%F)" \
-  > <repo>/.claude/skills/.junior-agent-version
+for dir in <repo>/.claude/skills <repo>/.agents/skills; do
+  [ -d "$dir" ] && printf '# junior-agent install stamp - do not edit by hand\nversion: %s\ncommit: %s\nsource: %s\ninstalled: %s\nmethod: copy\n' \
+    "$version" "$commit" "$source" "$(date +%F)" \
+    > "$dir/.junior-agent-version"
+done
 ```
 
 `version` comes from `.claude-plugin/plugin.json` in this pack, `commit` from `git rev-parse HEAD` in this pack's checkout, `source` from its `repository` field. If any of the three cannot be read, say which and write the stamp without guessing a value.
@@ -73,8 +78,8 @@ Guardrails ship strict by default. Do not relax them during setup. If the human 
 - [ ] No `<...>` placeholders remain
 - [ ] Every command in section 4 was run and works
 - [ ] Symlink exists for every agent tool in use (`CLAUDE.md`, `GEMINI.md`, ...); not needed for Codex CLI or Cursor
-- [ ] Skills are installed and discoverable
-- [ ] Install stamp written, if the skills were copied rather than installed as a plugin
+- [ ] Skills are installed and discoverable in every skills directory in use (`.claude/skills/`, `.agents/skills/`)
+- [ ] Install stamp written in each directory the skills were copied into (not needed where installed as a plugin)
 - [ ] `docs/prd.md` written by a human
 - [ ] ADR 0001 dated
 - [ ] The human can answer: what business outcome does this project create?

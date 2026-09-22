@@ -1,6 +1,6 @@
 ---
 name: migrate
-description: Change a live schema or backfill data in steps that are safe to deploy and safe to stop halfway. Use for /migrate, "add a column", "rename this column", "drop this table", "backfill", "zero-downtime migration", or any change where old code and the new schema run at the same time.
+description: Change a live schema or backfill data in steps that are safe to deploy and safe to stop halfway. Use for /migrate (Codex CLI: $migrate), "add a column", "rename this column", "drop this table", "backfill", "zero-downtime migration", or any change where old code and the new schema run at the same time.
 ---
 
 # Migrate

@@ -1,6 +1,6 @@
 ---
 name: architect
-description: Design the types, signatures, and module boundaries before writing code, then implement against that sketch. Use for /architect, "design this", or any change crossing a function or module boundary where jumping straight to code would lock in the wrong shape.
+description: Design the types, signatures, and module boundaries before writing code, then implement against that sketch. Use for /architect (Codex CLI: $architect), "design this", or any change crossing a function or module boundary where jumping straight to code would lock in the wrong shape.
 ---
 
 # Architect

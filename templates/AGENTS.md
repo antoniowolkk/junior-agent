@@ -22,7 +22,7 @@ Read these in order. They outrank your own assumptions.
 1. `docs/prd.md` — WHAT to build and for whom.
 2. `docs/adr/` — WHY the architecture is the way it is. Follow accepted ADRs; never contradict one silently.
 3. This file — HOW we work here.
-4. `.claude/skills/rigor/SKILL.md` — the method for any non-trivial task: how to route it, which principles apply, what counts as proof.
+4. `.claude/skills/rigor/SKILL.md` (Codex CLI: `.agents/skills/rigor/SKILL.md`, same file) — the method for any non-trivial task: how to route it, which principles apply, what counts as proof.
 5. The existing code — match its patterns over any general best practice.
 
 If these conflict with each other, stop and ask. Do not pick a winner on your own.
@@ -88,7 +88,7 @@ Rules:
 
 ## 6b. How to work — rigor
 
-For anything non-trivial (a bug, a feature, a refactor, performance work, a review, or work left running unattended), follow `.claude/skills/rigor/SKILL.md`. In short:
+For anything non-trivial (a bug, a feature, a refactor, performance work, a review, or work left running unattended), follow `.claude/skills/rigor/SKILL.md` (Codex CLI: `.agents/skills/rigor/SKILL.md`). In short:
 
 - Name which kind of task this is before acting, and write its steps into the todo list first.
 - Reproduce a defect before fixing it. Name the data shape before writing logic. Record current behavior before restructuring it.
@@ -96,7 +96,7 @@ For anything non-trivial (a bug, a feature, a refactor, performance work, a revi
 - Label every claim in the same sentence: measured, inferred, or guess.
 - Cite a principle by name only alongside the decision it actually changed.
 
-Companion skills sit beside it in `.claude/skills/` and rigor says when to reach for each: `investigate`, `architect`, `blast-radius`, `interrogate`, `swarm`, `decision-log`, `unslop`.
+Companion skills sit beside it in the same skills directory and rigor says when to reach for each: `investigate`, `architect`, `blast-radius`, `interrogate`, `swarm`, `decision-log`, `unslop`.
 
 Section 7 below outranks all of them wherever they disagree.
 

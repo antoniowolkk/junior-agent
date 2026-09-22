@@ -13,12 +13,15 @@ Written so it works for someone who does not code. Section 7 of `AGENTS.md` is s
 
 ## Install
 
-Add this repo as a plugin marketplace in Claude Code, then install `junior-agent`. The skills become available as `/rigor`, `/architect`, and so on.
+**Claude Code:** add this repo as a plugin marketplace, then install `junior-agent`. The skills become available as `/rigor`, `/architect`, and so on.
 
-Or copy the skills by hand into any project:
+**Codex CLI:** no plugin system — copy the skills by hand (below). Same `SKILL.md` files; invoke explicitly with `$rigor`, `$architect`, etc., or let Codex pick one implicitly from its description.
+
+Copy the skills by hand into any project:
 
 ```bash
-mkdir -p .claude/skills && cp -r skills/* .claude/skills/
+mkdir -p .claude/skills && cp -r skills/* .claude/skills/   # Claude Code
+mkdir -p .agents/skills && cp -r skills/* .agents/skills/   # Codex CLI
 ```
 
 A copy made this way is frozen at the version you copied. Run `/update-pack` later to refresh it — see [Update an install](#update-an-install). Plugin installs update through `/plugin` instead.
@@ -33,7 +36,7 @@ By hand, six steps:
 
 1. Copy `templates/AGENTS.md` and `templates/docs/` into your project root.
 2. `AGENTS.md` is read natively by OpenAI Codex CLI and Cursor. For any other agent tool you use, symlink its filename: `ln -s AGENTS.md CLAUDE.md` for Claude Code, `ln -s AGENTS.md GEMINI.md` for Gemini CLI.
-3. Install the skills (above). The skill-invocation mechanism (`/rigor` and so on) is Claude Code-specific; other tools still get the full method through `AGENTS.md` section 6b, they just can't invoke it as a slash command.
+3. Install the skills (above) into `.claude/skills/`, `.agents/skills/`, or both, matching the tool(s) in use. Claude Code and Codex CLI both invoke them as commands (`/rigor` vs `$rigor`); Gemini CLI and Cursor have no equivalent yet — those still get the full method through `AGENTS.md` section 6b, just not as an invocable command.
 4. Pick a variant from `templates/variants/` and paste its sections over the matching ones in `AGENTS.md`.
 5. Fill every `<...>`. If you do not know a value, ask the agent to read the repo and fill it, then review.
 6. **Write `docs/prd.md` yourself.** You know the users and the outcome. The agent does not. This is the highest-value thing a non-developer contributes.
@@ -119,12 +122,13 @@ tell you the same thing rather than create a second, divergent copy.
 ### If you copied the skills by hand
 
 ```bash
-/update-pack
+/update-pack     # Claude Code
+$update-pack     # Codex CLI
 ```
 
-It does this, in order:
+It does this, in order, for each of `.claude/skills/` and `.agents/skills/` that exists:
 
-1. **Finds the install** and reads `.claude/skills/.junior-agent-version`, the stamp written when
+1. **Finds the install** and reads `<skills-dir>/.junior-agent-version`, the stamp written when
    the skills were copied. The stamp records which commit you copied from — that is the base it
    compares against.
 2. **Clones upstream to a temp directory.** Nothing is fetched into your repo and no remote is
@@ -174,7 +178,7 @@ No agent needed:
 
 ```bash
 git clone https://github.com/antoniowolkk/junior-agent /tmp/junior-agent
-diff -ru .claude/skills /tmp/junior-agent/skills
+diff -ru .claude/skills /tmp/junior-agent/skills    # or .agents/skills for Codex CLI
 git -C /tmp/junior-agent diff <the-commit-you-copied>..HEAD -- templates/
 ```
 
@@ -186,7 +190,7 @@ Read both diffs. Copy the skill files you want. Edit `AGENTS.md` yourself.
 - [ ] Every command in section 4 actually runs
 - [ ] `docs/prd.md` filled in by a human
 - [ ] Symlink exists for every agent tool in use (`CLAUDE.md`, `GEMINI.md`, ...); not needed for Codex CLI or Cursor
-- [ ] Skills installed and discoverable
+- [ ] Skills installed and discoverable in every skills directory in use (`.claude/skills/`, `.agents/skills/`)
 - [ ] You can answer: what business outcome does this project create?
 
 ## The pack grows itself

@@ -1,6 +1,6 @@
 ---
 name: grow-skill
-description: Pick one topic, research it as deep as it goes, and open a pull request for one new skill or one real improvement to an existing one. Use for /grow-skill, "go learn", "grow the pack", "add a skill", or any request to have this pack teach itself something new. Manual, on demand — never merges, the human is the merge authority.
+description: Pick one topic, research it as deep as it goes, and open a pull request for one new skill or one real improvement to an existing one. Use for /grow-skill (Codex CLI: $grow-skill), "go learn", "grow the pack", "add a skill", or any request to have this pack teach itself something new. Manual, on demand — never merges, the human is the merge authority.
 ---
 
 # Grow Skill
