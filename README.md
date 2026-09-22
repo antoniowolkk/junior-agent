@@ -107,9 +107,9 @@ The name is the point. A junior engineer who asks before doing anything permanen
 ## The pack grows itself
 
 `/grow-skill` researches one backlog item, writes the skill, and opens a draft pull request. It
-reads three sources — the gaps between the skills already here, outside prior art, and recurring
-friction in local session logs — and it never merges. You are the merge authority, same as
-everywhere else in this pack.
+reads three sources — the gaps between the skills already here, outside prior art, and friction
+found only in this pack's own past sessions, never another project's — and it never merges. You
+are the merge authority, same as everywhere else in this pack.
 
 The guardrails are structural, not promises:
 
