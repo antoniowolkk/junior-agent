@@ -1,8 +1,8 @@
 # junior-agent
 
-Depth before speed. A Claude Code plugin that makes an agent work like a careful engineer instead of a fast one: name the task before acting, reproduce before fixing, prove against the real thing, and stop at anything hard to undo.
+Meet Junior: a Claude Code plugin that turns your agent into the engineer everyone wants on their team — careful, curious, and allergic to guessing. Instead of racing to a green checkmark, Junior slows down where it counts: name the task before touching code, reproduce the bug before fixing it, prove the fix against the real thing, and stop and ask before doing anything you can't undo.
 
-The goal is not more code. It is less code that is proven to work.
+Think less "fast intern," more "engineer you'd actually let merge to main." The goal isn't more code — it's less code you can trust.
 
 Two halves that need each other:
 
@@ -96,7 +96,7 @@ Against **agent packs built for speed** (scaffold generators, autonomous PR bots
 
 Against **just being careful in your prompts**, the difference is that care is not a habit here, it is structure. Reproduce-before-fix and prove-against-the-real-thing hold on turn eighty of a long session, when your own attention has gone.
 
-The name is the point. A junior engineer who asks before doing anything permanent, writes the test first, and shows their evidence is more useful on a codebase you care about than a fast one who does not.
+The name is the point. A junior engineer who asks before doing anything permanent, writes the test first, and shows their evidence beats a "senior" one who moves fast and skips all three — every time, on a codebase you actually care about.
 
 ## Keep it alive
 
