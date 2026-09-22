@@ -34,10 +34,11 @@ Abort the run, without a PR, if any holds:
   At six or more, stop before any research — no reading, no searching, no writing. The queue is
   full until a human merges or closes one. This is the backpressure that keeps unreviewed work from
   piling up no matter how often this is called.
-- The pack is at its cap. Twelve skills is the ceiling; past that, routing gets worse, not better,
-  and **maintain** is the only remaining mode.
 
 An abort is a success. Say which condition fired and stop.
+
+Being at the skill cap is not a preflight abort — it changes which mode section 1 picks, not
+whether a run happens at all. See section 1.
 
 ## 1. Pick the mode
 
@@ -46,11 +47,16 @@ deliberate decision by a human to spend a real research cycle — so past the st
 section 0, prefer **grow** or **propose** over **abort**. Never fall through to **grow** because
 there is nothing else to do; do fall through to it because the research earned it.
 
+Check the cap before anything else in this section: count `skills/*/SKILL.md`. Twelve is the
+ceiling — at or past it, **grow** is off the table no matter what `BACKLOG.md` holds, and
+**maintain** is the only mode left. `BACKLOG.md` rows keep accumulating research either way; they
+just wait for a human to build them by hand, or for `maintain` to fold one into an existing skill.
+
 | Mode | When | Output |
 | --- | --- | --- |
-| **grow** | `BACKLOG.md` has a `proposed` row that still earns a slot after step 2's overlap check | One new skill, one PR |
-| **propose** | No `proposed` row remains | Appends candidate rows, PR touching only `BACKLOG.md` |
-| **maintain** | Backlog is empty *and* research surfaced no candidate, or the pack is at cap | One improvement to one existing skill, one PR |
+| **grow** | Pack is below cap, and `BACKLOG.md` has a `proposed` row that still earns a slot after step 2's overlap check | One new skill, one PR |
+| **propose** | Pack is below cap, and no `proposed` row remains | Appends candidate rows, PR touching only `BACKLOG.md` |
+| **maintain** | Pack is at or past cap, or (below cap and) backlog is empty *and* research surfaced no candidate | One improvement to one existing skill, one PR |
 | **abort** | None of the above produced anything worth a human's five minutes | Nothing. Say why. |
 
 **grow** and **propose** are deliberately split across runs, so an idea is seen by a human before
