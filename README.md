@@ -21,7 +21,7 @@ Or copy the skills by hand into any project:
 mkdir -p .claude/skills && cp -r skills/* .claude/skills/
 ```
 
-A copy made this way is frozen at the version you copied. Run `/update-pack` later to refresh it: it replaces stale skills, leaves any you edited alone, and reports what changed in the templates without touching your `AGENTS.md`. Plugin installs update through `/plugin` instead.
+A copy made this way is frozen at the version you copied. Run `/update-pack` later to refresh it — see [Update an install](#update-an-install). Plugin installs update through `/plugin` instead.
 
 The skills work on their own, but they refer to `AGENTS.md` section 7 for permissions. Install the templates too.
 
@@ -98,6 +98,84 @@ The name is the point. A junior engineer who asks before doing anything permanen
 ## Keep it alive
 
 `AGENTS.md` is only useful while it is true. When a command changes or a convention shifts, update it in the same change. A stale `AGENTS.md` is worse than none, because the agent will trust it.
+
+## Update an install
+
+A new version of this pack came out. What you do depends on how you installed it, and on which
+kind of file you are updating.
+
+**The skills are ours. Your `AGENTS.md` is yours.** `/update-pack` replaces skills and never
+writes `AGENTS.md`, `docs/prd.md`, or your ADRs. Those diverge from the templates on purpose —
+that divergence is your project.
+
+### If you installed the plugin
+
+Update it through `/plugin`. The plugin system owns those files, and `/update-pack` will stop and
+tell you the same thing rather than create a second, divergent copy.
+
+### If you copied the skills by hand
+
+```bash
+/update-pack
+```
+
+It does this, in order:
+
+1. **Finds the install** and reads `.claude/skills/.junior-agent-version`, the stamp written when
+   the skills were copied. The stamp records which commit you copied from — that is the base it
+   compares against.
+2. **Clones upstream to a temp directory.** Nothing is fetched into your repo and no remote is
+   added.
+3. **Compares each skill three ways**: the version you copied, the version installed now, and the
+   version upstream today. That is what tells a local edit apart from an upstream change.
+4. **Shows you a table** before writing anything:
+
+   ```
+   skill              verdict             action
+   rigor              stale               replace  (upstream: 3 commits, +12/-4 lines)
+   reproduce          current             none
+   architect          locally modified    keep local
+   migrate            conflict            ask
+   swarm              new upstream        install?
+   our-house-style    unknown to pack     leave alone
+   ```
+
+5. **Asks.** One yes covers the safe replacements. Each conflict is asked separately, and keeping
+   your version is the default.
+6. **Reports template drift.** It lists what changed upstream in `templates/AGENTS.md` and the
+   docs since your install, section by section, and hands you the diff. It does not apply any of
+   it.
+7. **Rewrites the stamp** so the next update has a fresh base.
+
+### Updating your `AGENTS.md` and docs
+
+From step 6 you have a list of upstream template changes. Pick the ones you want, then ask for
+them one at a time:
+
+> Apply the section 4 change from that list to my AGENTS.md.
+
+You see the diff, you approve, it writes. There is no bulk apply, and that is deliberate.
+Section 7 is your guardrails and sections 1 and 8 are your product — a template pasted over any
+of them is a silent safety or accuracy regression that looks exactly like a successful update.
+
+### First run, no stamp
+
+Copies made before the stamp existed have no base, so a local edit and an upstream change are
+indistinguishable. `/update-pack` says so and drops into a careful mode: no bulk replace, every
+diff shown one at a time, nothing written without a yes. It writes a stamp at the end, so the
+second run onward is a real three-way compare.
+
+### Doing it by hand
+
+No agent needed:
+
+```bash
+git clone https://github.com/antoniowolkk/junior-agent /tmp/junior-agent
+diff -ru .claude/skills /tmp/junior-agent/skills
+git -C /tmp/junior-agent diff <the-commit-you-copied>..HEAD -- templates/
+```
+
+Read both diffs. Copy the skill files you want. Edit `AGENTS.md` yourself.
 
 ## Before you start a project
 
