@@ -1,12 +1,17 @@
 ---
 name: grow-skill
-description: Research, write, and open a pull request for one new skill in this pack. Use for /grow-skill, the scheduled growth run, "add a skill", "grow the pack", or when the backlog has an item ready to research. Never merges — the human is the merge authority.
+description: Pick one topic, research it as deep as it goes, and open a pull request for one new skill or one real improvement to an existing one. Use for /grow-skill, "go learn", "grow the pack", "add a skill", or any request to have this pack teach itself something new. Manual, on demand — never merges, the human is the merge authority.
 ---
 
 # Grow Skill
 
-One run produces at most one new skill, on its own branch, as one pull request. The human reviews
-and merges. Nothing here authorizes a merge, a force push, or a change to `main`.
+Triggered by hand — "go learn", `/grow-skill`, or a direct ask — never by a timer. One call picks
+one topic, researches it as deep as it goes, and produces exactly one pull request: one new skill,
+or one real improvement to an existing one. The human reviews and merges. Nothing here authorizes
+a merge, a force push, or a change to `main`.
+
+Depth over speed, always. A call to this skill is a deliberate decision to spend real time and
+real research on one thing done well — never a quick pass to have something to show.
 
 `AGENTS.md` section 7 outranks this file. Where section 7 says stop and ask, stop and ask.
 
@@ -27,8 +32,8 @@ Abort the run, without a PR, if any holds:
   ```
 
   At six or more, stop before any research — no reading, no searching, no writing. The queue is
-  full until a human merges or closes one. This is the backpressure that keeps the cadence honest:
-  the agent may run ahead of review by six, never more.
+  full until a human merges or closes one. This is the backpressure that keeps unreviewed work from
+  piling up no matter how often this is called.
 - The pack is at its cap. Twelve skills is the ceiling; past that, routing gets worse, not better,
   and **maintain** is the only remaining mode.
 
@@ -36,9 +41,10 @@ An abort is a success. Say which condition fired and stop.
 
 ## 1. Pick the mode
 
-A run does exactly one of these, and picks the first that applies. On a daily cadence most runs
-are **maintain** or **abort**, and that is the system working. Never fall through to **grow**
-because there is nothing else to do.
+A run does exactly one of these, and picks the first that applies. Being called at all is a
+deliberate decision by a human to spend a real research cycle — so past the structural stops in
+section 0, prefer **grow** or **propose** over **abort**. Never fall through to **grow** because
+there is nothing else to do; do fall through to it because the research earned it.
 
 | Mode | When | Output |
 | --- | --- | --- |

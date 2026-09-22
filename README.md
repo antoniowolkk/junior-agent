@@ -106,10 +106,14 @@ The name is the point. A junior engineer who asks before doing anything permanen
 
 ## The pack grows itself
 
-`/grow-skill` researches one backlog item, writes the skill, and opens a draft pull request. It
-reads three sources — the gaps between the skills already here, outside prior art, and recurring
-friction in local session logs — and it never merges. You are the merge authority, same as
-everywhere else in this pack.
+Say "go learn," or run `/grow-skill`. One call, one topic, researched as deep as it goes, ending in
+one draft pull request — a new skill, or a real improvement to an existing one. It never merges.
+You are the merge authority, same as everywhere else in this pack.
+
+It reads three sources: the gaps between the skills already here, outside prior art (read in full,
+cross-checked against a second independent source before anything is written from it), and
+recurring friction in *this pack's own* past sessions — never another project, never another
+installed tool.
 
 The guardrails are structural, not promises:
 
@@ -120,20 +124,17 @@ The guardrails are structural, not promises:
 - `./scripts/validate-skills.sh` fails the run before a PR exists if the frontmatter, naming,
   links, or README row are wrong.
 - One skill per PR, opened as a draft, labelled `agent-authored`.
+- It stops before any research once six agent-authored pull requests are already open, and once
+  the pack hits twelve skills only improving an existing one is left to do.
 
-Run it on demand:
+Run it on demand, deliberately, whenever you want the pack to spend a real research cycle on
+something:
 
 ```bash
 /grow-skill
 ```
 
-Or put it on a timer. Frequency is safe to raise because the run is gated, not the schedule: it
-stops before doing any research once six agent-authored pull requests are open, and when the
-backlog is empty it either proposes new candidates or sharpens an existing skill rather than
-inventing a twelfth one. Twelve skills is the hard cap.
-
-So the review queue sets the real pace. The agent may run up to six pull requests ahead of you
-and then waits. Your side of the deal is roughly five minutes per pull request.
+or just say **go learn**.
 
 ## Credit
 
