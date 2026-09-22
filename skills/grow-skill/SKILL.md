@@ -81,9 +81,9 @@ the reviewer to check, so it earns that cost by being thorough here, not by bein
 
 | Source | How |
 | --- | --- |
-| **Repo gaps** | Read every existing `skills/*/SKILL.md` and `templates/AGENTS.md` in full, not just headings. Name the exact gap the new skill fills and the existing skill it most nearly overlaps. If the overlap is more than a third, extend that skill instead and close the backlog row as `rejected`. |
+| **Repo gaps** | Use the `Glob` tool for `skills/*/SKILL.md`, then the `Read` tool on each match and on `templates/AGENTS.md` — never a shell loop (`for`, `cat`, `find`). Name the exact gap the new skill fills and the existing skill it most nearly overlaps. If the overlap is more than a third, extend that skill instead and close the backlog row as `rejected`. |
 | **Web** | Search for prior art: other skill packs, agent-engineering write-ups, primary docs for any tool the skill drives. Open and read at least two independent primary sources before writing a step from them — a blog post summarizing a spec is not the spec. Prefer the tool's own documentation or the paper over a tutorial about it. Verify any command the skill will tell an agent to run by executing it, not by reading that it should work. Anything you cannot verify is dropped, not hedged. |
-| **Session transcripts** | Grep `~/.claude/projects/**/*.jsonl` for recurring friction on this topic — repeated corrections, retried commands, the same question asked across sessions. Do not stop at a count: read enough surrounding context in a handful of matches to tell a real recurring pattern from a coincidence of wording, and say how many sessions it spans. Quote the pattern, never the content: no file contents, paths outside this repo, credentials, or personal data enter the skill or the PR. |
+| **This pack's own sessions** | This pack exists to help an agent write and use `AGENTS.md`-driven skills well — not to document its user's unrelated work. Use the `Grep` tool (never raw `Bash` — `grep`, `cat`, `for`-loops, and `find` invoked through Bash each need a fresh, unpredictable permission grant and are the single most common cause of an unattended run hanging forever) in two passes: first `output_mode: "files_with_matches"` on the literal text `"cwd":"<this repo's absolute path>"` across `~/.claude/projects/**/*.jsonl` to find this pack's own session files, then `Grep` only those specific files for recurring friction with *this pack's own skills* — one that didn't trigger, routing that confused an agent, a step nobody could follow. Never grep transcripts from other repositories or other projects — a different codebase's bugs, migrations, or incidents are not this pack's research material. Never source a skill's content from another installed plugin's own behavior or output (a terse-mode formatter, an unrelated command pack) — that is a different tool, not evidence about skill authoring. Do not stop at a count: read enough surrounding context in a handful of matches to tell a real recurring pattern from a coincidence of wording, and say how many sessions it spans. Quote the pattern, never the content: no file contents, paths, credentials, or personal data enter the skill or the PR. |
 
 ### Cross-verify before writing
 
@@ -108,7 +108,9 @@ instruction in the skill.
 In **propose** mode, write backlog rows only and skip to step 4. In **maintain** mode, make the one
 cited change and skip to step 4.
 
-In **grow** mode, create `skills/<name>/SKILL.md` to the contract. Shape:
+In **grow** mode, create `skills/<name>/SKILL.md` with the `Write` tool directly — it creates the
+new directory as it writes the file, so there is no need for `mkdir` or any other shell step first.
+Use `Write`/`Edit` for every file touched in this step, never `Bash`. Shape:
 
 1. Frontmatter: `name`, `description` with real trigger phrases.
 2. `# Title`, then one paragraph on what the skill is for and what it refuses to do.
@@ -116,7 +118,7 @@ In **grow** mode, create `skills/<name>/SKILL.md` to the contract. Shape:
 4. A precedence line pointing at `AGENTS.md` section 7.
 5. `## Sources` at the bottom, linking anything external.
 
-Then update:
+Then update, each with `Edit`:
 
 - The skills table in `README.md`.
 - The companion table in `skills/rigor/SKILL.md`, if the skill is one `rigor` should route to.
