@@ -10,8 +10,10 @@ Replace `<PACK PATH>` once with where this pack lives, then save it somewhere yo
 Read <PACK PATH>/docs/setup.md completely before doing anything else.
 
 Then follow it to install the agent onboarding pack into this project:
-AGENTS.md, a CLAUDE.md symlink, docs/prd.md, docs/adr/, and the skills
-in .claude/skills/ (rigor is the one AGENTS.md section 6b points at).
+AGENTS.md, a symlink for whichever agent tool I use (CLAUDE.md for Claude Code,
+GEMINI.md for Gemini CLI — skip this for Codex CLI or Cursor, they read
+AGENTS.md directly), docs/prd.md, docs/adr/, and the skills in .claude/skills/
+(rigor is the one AGENTS.md section 6b points at).
 
 The pack is at <PACK PATH>/ — templates/AGENTS.md as the base, templates/variants/
 for platform-specific sections, templates/docs/ for the PRD and ADR templates,

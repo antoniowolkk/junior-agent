@@ -32,8 +32,8 @@ Fastest path: paste the prompt in [`templates/KICKOFF-PROMPT.md`](templates/KICK
 By hand, six steps:
 
 1. Copy `templates/AGENTS.md` and `templates/docs/` into your project root.
-2. `ln -s AGENTS.md CLAUDE.md` so Claude Code picks it up.
-3. Install the skills (above).
+2. `AGENTS.md` is read natively by OpenAI Codex CLI and Cursor. For any other agent tool you use, symlink its filename: `ln -s AGENTS.md CLAUDE.md` for Claude Code, `ln -s AGENTS.md GEMINI.md` for Gemini CLI.
+3. Install the skills (above). The skill-invocation mechanism (`/rigor` and so on) is Claude Code-specific; other tools still get the full method through `AGENTS.md` section 6b, they just can't invoke it as a slash command.
 4. Pick a variant from `templates/variants/` and paste its sections over the matching ones in `AGENTS.md`.
 5. Fill every `<...>`. If you do not know a value, ask the agent to read the repo and fill it, then review.
 6. **Write `docs/prd.md` yourself.** You know the users and the outcome. The agent does not. This is the highest-value thing a non-developer contributes.
@@ -185,7 +185,7 @@ Read both diffs. Copy the skill files you want. Edit `AGENTS.md` yourself.
 - [ ] No `<...>` placeholders left
 - [ ] Every command in section 4 actually runs
 - [ ] `docs/prd.md` filled in by a human
-- [ ] `CLAUDE.md` symlink exists
+- [ ] Symlink exists for every agent tool in use (`CLAUDE.md`, `GEMINI.md`, ...); not needed for Codex CLI or Cursor
 - [ ] Skills installed and discoverable
 - [ ] You can answer: what business outcome does this project create?
 
