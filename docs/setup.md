@@ -37,7 +37,7 @@ Run these checks before anything else:
 ls -a                      # is this a repo at all?
 git log --oneline | head   # is there history?
 ls package.json pyproject.toml go.mod Cargo.toml pubspec.yaml Makefile 2>/dev/null
-ls AGENTS.md CLAUDE.md docs/ 2>/dev/null
+ls AGENTS.md CLAUDE.md GEMINI.md docs/ 2>/dev/null
 ```
 
 Classify:
@@ -65,13 +65,14 @@ Order: **PRD → decisions → AGENTS.md → code.** Never reorder this. Code wr
 
 ### A1. Copy the pack in
 
-Copy `AGENTS.md` and `docs/` to the project root. Create the symlink:
+Copy `AGENTS.md` and `docs/` to the project root. `AGENTS.md` is read natively by OpenAI Codex CLI and Cursor — no symlink needed for those. Ask which other agent tools the human uses and symlink each one's filename:
 
 ```bash
-ln -s AGENTS.md CLAUDE.md
+ln -s AGENTS.md CLAUDE.md     # Claude Code
+ln -s AGENTS.md GEMINI.md     # Gemini CLI
 ```
 
-If the platform does not support symlinks, copy the file and say clearly that both must be edited together.
+If the platform does not support symlinks, copy the file and say clearly that all copies must be edited together.
 
 ### A2. Interview for the PRD
 
@@ -205,7 +206,7 @@ Before you report done, verify every line:
 - [ ] No `<...>` placeholder remains anywhere in a delivered file
 - [ ] Every section-4 command was actually run, or is explicitly marked unverified
 - [ ] Every path in section 3 exists — check them
-- [ ] `CLAUDE.md` symlink exists and resolves
+- [ ] A symlink exists and resolves for every agent tool in use (`CLAUDE.md`, `GEMINI.md`, ...); not needed for Codex CLI or Cursor
 - [ ] `.claude/skills/rigor/SKILL.md` exists — section 6b of AGENTS.md points at it
 - [ ] The companion skills are installed alongside it in `.claude/skills/`
 - [ ] Section 6b survived editing and was not deleted as boilerplate

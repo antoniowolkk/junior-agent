@@ -16,7 +16,7 @@ Run a quick pass before asking anything:
 - Is this a git repo? Is it empty, or does it have code?
 - What language, package manager, test runner, and framework? Read `package.json`, `pyproject.toml`, `go.mod`, `Cargo.toml`, `pubspec.yaml`, the lockfile, the CI config.
 - What are the real commands? Read the scripts block and the CI workflow. Do not invent commands.
-- Is there already an `AGENTS.md`, `CLAUDE.md`, `.cursorrules`, or `.github/copilot-instructions.md`?
+- Is there already an `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.cursorrules`, or `.github/copilot-instructions.md`?
 
 Say what you found before you write anything.
 
@@ -33,10 +33,11 @@ templates/docs/adr/*.md      -> <repo>/docs/adr/
 skills/                      -> <repo>/.claude/skills/   (or install this repo as a plugin)
 ```
 
-Then link it so Claude Code picks it up:
+`AGENTS.md` is read natively by OpenAI Codex CLI and Cursor — no link needed for those. For any other tool in use, ask which and symlink its filename:
 
 ```bash
-ln -s AGENTS.md CLAUDE.md
+ln -s AGENTS.md CLAUDE.md     # Claude Code
+ln -s AGENTS.md GEMINI.md     # Gemini CLI
 ```
 
 When you copy the skills by hand rather than installing the plugin, write an install stamp beside them. `/update-pack` reads it as the base of a three-way compare; without it, a later update cannot tell a local edit from an upstream change.
@@ -71,7 +72,7 @@ Guardrails ship strict by default. Do not relax them during setup. If the human 
 
 - [ ] No `<...>` placeholders remain
 - [ ] Every command in section 4 was run and works
-- [ ] `CLAUDE.md` symlink exists
+- [ ] Symlink exists for every agent tool in use (`CLAUDE.md`, `GEMINI.md`, ...); not needed for Codex CLI or Cursor
 - [ ] Skills are installed and discoverable
 - [ ] Install stamp written, if the skills were copied rather than installed as a plugin
 - [ ] `docs/prd.md` written by a human

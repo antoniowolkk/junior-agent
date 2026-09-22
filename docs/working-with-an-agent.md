@@ -239,7 +239,7 @@ The workshop's line for this: *vibe to explore, TDD to ship.* Explore freely whe
 
 **Day 2**
 - [ ] `AGENTS.md` in place, no placeholders left
-- [ ] `CLAUDE.md` symlink created
+- [ ] Symlink created for your agent tool, if it needs one (`CLAUDE.md` for Claude Code, `GEMINI.md` for Gemini CLI — Codex CLI and Cursor read `AGENTS.md` directly)
 - [ ] Every command in section 4 personally run and working
 - [ ] Guardrails read start to finish, kept strict
 

@@ -2,7 +2,7 @@
 
 > Persistent memory for AI coding agents working in this repo.
 > Read this file completely before your first action in a session.
-> Copy this file to the repo root. Also run `ln -s AGENTS.md CLAUDE.md` so Claude Code picks it up.
+> Copy this file to the repo root. `AGENTS.md` is read natively by OpenAI Codex CLI and Cursor. For tools that look for their own filename, symlink it: `ln -s AGENTS.md CLAUDE.md` for Claude Code, `ln -s AGENTS.md GEMINI.md` for Gemini CLI. Symlink for every tool in use.
 > Replace every `<...>` placeholder. Delete sections that do not apply. Do not ship it with placeholders left in.
 
 ## 1. What this project is
