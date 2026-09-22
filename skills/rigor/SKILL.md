@@ -15,6 +15,7 @@ This file is the spine. Reach for a companion when the route calls for it.
 
 | Need | Skill |
 | --- | --- |
+| Decide whether the change should be built at all | **descope** |
 | Size how much to take unsupervised, and what context to demand first | **delegate** |
 | Turn a vague defect report into a failing test | **reproduce** |
 | Understand code or its rationale before touching it | **investigate** |
