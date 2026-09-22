@@ -13,13 +13,15 @@ Written so it works for someone who does not code. Section 7 of `AGENTS.md` is s
 
 ## Install
 
-Add this repo as a plugin marketplace in Claude Code, then install `junior-agent`. The nine skills become available as `/rigor`, `/architect`, and so on.
+Add this repo as a plugin marketplace in Claude Code, then install `junior-agent`. The skills become available as `/rigor`, `/architect`, and so on.
 
 Or copy the skills by hand into any project:
 
 ```bash
 mkdir -p .claude/skills && cp -r skills/* .claude/skills/
 ```
+
+A copy made this way is frozen at the version you copied. Run `/update-pack` later to refresh it: it replaces stale skills, leaves any you edited alone, and reports what changed in the templates without touching your `AGENTS.md`. Plugin installs update through `/plugin` instead.
 
 The skills work on their own, but they refer to `AGENTS.md` section 7 for permissions. Install the templates too.
 
@@ -53,6 +55,7 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | `skills/decision-log/` | A reviewable TSV trail for unattended work. |
 | `skills/unslop/` | Cut AI tells from anything that ships. |
 | `skills/setup-project/` | Install this pack into a repo and fill it from the code. |
+| `skills/update-pack/` | Refresh an installed copy without clobbering local edits. Skills replaced, `AGENTS.md` never touched. |
 | `skills/grow-skill/` | Research, write, and PR one new skill. The pack grows itself; you review. |
 | `templates/AGENTS.md` | The main file. Rules, commands, conventions, guardrails. |
 | `templates/variants/` | Platform sections to paste in: frontend, fullstack, backend API, Flutter. |
