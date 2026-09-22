@@ -20,6 +20,7 @@
     "migrations",
     "autonomy",
     "scoping",
+    "yagni",
     "updates"
   ],
   "skills": "./skills/",

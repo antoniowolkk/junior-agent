@@ -9,6 +9,22 @@ number exists, so it never depends on a follow-up commit to a branch that may al
 
 ---
 
+## 2026-09-22 — grow: `descope`
+
+The pack had a lot to say about building something well and nothing about not building it. `rigor`
+names Laziness Protocol and Subtract Before You Add as principles, but a name is not a procedure —
+the same gap `reproduce` filled for "reproduce first." Researched ponytail, a skill pack built
+entirely around this idea, whose agentic benchmark on a real FastAPI + React repo measures a 54%
+mean cut in lines of code against the same agent with no skill, largest where the baseline
+over-built and near zero where the code was already minimal. That is the second leg: over-building
+is measurable, not a matter of taste. Took its rung ladder and its lazy-not-negligent floor, but
+deliberately did not copy its always-on posture — ponytail writes less code by default, whereas a
+junior agent that quietly narrows scope is harder to catch than one that over-builds, so `descope`
+ends in a five-line verdict the human signs off on and never in a smaller diff handed over without
+comment. Did not check this pack's own sessions for a friction pattern: the skill was written to a
+direct request rather than through a `/grow-skill` run, so it stands on the repo gap and the cited
+sources, not a third leg.
+
 ## 2026-09-22 — grow: `migrate`
 
 Schema and data migrations are the highest blast-radius change this pack lets an agent make, and
