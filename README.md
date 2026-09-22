@@ -1,5 +1,9 @@
 # junior-agent
 
+<p align="center">
+  <img src="docs/assets/junior.webp" alt="Junior, a purple sketch cloud waving" width="220">
+</p>
+
 Meet Junior: a Claude Code plugin that turns your agent into the engineer everyone wants on their team — careful, curious, and allergic to guessing. Instead of racing to a green checkmark, Junior slows down where it counts: name the task before touching code, reproduce the bug before fixing it, prove the fix against the real thing, and stop and ask before doing anything you can't undo.
 
 Think less "fast intern," more "engineer you'd actually let merge to main." The goal isn't more code — it's less code you can trust.
