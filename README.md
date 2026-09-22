@@ -11,6 +11,24 @@ Two halves that need each other:
 
 Written so it works for someone who does not code. Section 7 of `AGENTS.md` is strict by default, and the human is the merge authority.
 
+## Contents
+
+- [Install](#install)
+- [Set up a project](#set-up-a-project)
+- [What is in here](#what-is-in-here)
+- [The three rules that make it work](#the-three-rules-that-make-it-work)
+- [Why this instead of a bare agent](#why-this-instead-of-a-bare-agent)
+- [Keep it alive](#keep-it-alive)
+- [Update an install](#update-an-install)
+  - [If you installed the plugin](#if-you-installed-the-plugin)
+  - [If you copied the skills by hand](#if-you-copied-the-skills-by-hand)
+  - [Updating your `AGENTS.md` and docs](#updating-your-agentsmd-and-docs)
+  - [First run, no stamp](#first-run-no-stamp)
+  - [Doing it by hand](#doing-it-by-hand)
+- [Before you start a project](#before-you-start-a-project)
+- [The pack grows itself](#the-pack-grows-itself)
+- [Credit](#credit)
+
 ## Install
 
 Add this repo as a plugin marketplace in Claude Code, then install `junior-agent`. The skills become available as `/rigor`, `/architect`, and so on.
