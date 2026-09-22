@@ -1,6 +1,6 @@
 # junior-agent
 
-Meet Junior: a Claude Code plugin that turns your agent into the engineer everyone wants on their team — careful, curious, and allergic to guessing. Instead of racing to a green checkmark, Junior slows down where it counts: name the task before touching code, reproduce the bug before fixing it, prove the fix against the real thing, and stop and ask before doing anything you can't undo.
+Meet Junior: a plugin that turns your coding agent into the engineer everyone wants on their team — careful, curious, and allergic to guessing. Instead of racing to a green checkmark, Junior slows down where it counts: name the task before touching code, reproduce the bug before fixing it, prove the fix against the real thing, and stop and ask before doing anything you can't undo.
 
 Think less "fast intern," more "engineer you'd actually let merge to main." The goal isn't more code — it's less code you can trust.
 
@@ -8,6 +8,8 @@ Two halves that need each other:
 
 - **The project files.** `AGENTS.md` is the agent's memory, the PRD says what, ADRs say why, tests say done.
 - **The skills.** How the agent actually works on anything non-trivial: routing, principles, evidence.
+
+It ships as a Claude Code plugin, but it is not Claude-only. The project files are plain Markdown: `AGENTS.md` is read natively by OpenAI Codex CLI and Cursor, and any other tool picks it up through a symlink. Only the slash-command invocation (`/rigor`, `/architect`) is Claude Code-specific — elsewhere the same method is reachable through `AGENTS.md` section 6b. See [Set up a project](#set-up-a-project).
 
 Written so it works for someone who does not code. Section 7 of `AGENTS.md` is strict by default, and the human is the merge authority.
 
@@ -33,7 +35,7 @@ Written so it works for someone who does not code. Section 7 of `AGENTS.md` is s
 
 Add this repo as a plugin marketplace in Claude Code, then install `junior-agent`. The skills become available as `/rigor`, `/architect`, and so on.
 
-Or copy the skills by hand into any project:
+Or copy the skills by hand into any project — this is also the path for Codex CLI, Cursor, Gemini CLI, or any other agent tool:
 
 ```bash
 mkdir -p .claude/skills && cp -r skills/* .claude/skills/
