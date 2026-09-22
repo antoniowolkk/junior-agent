@@ -16,7 +16,8 @@
     "prd",
     "guardrails",
     "review",
-    "verification"
+    "verification",
+    "migrations"
   ],
   "skills": "./skills/",
   "homepage": "https://github.com/antoniowolkk/junior-agent",
