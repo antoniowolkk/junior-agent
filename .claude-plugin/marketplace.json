@@ -1,0 +1,22 @@
+{
+  "$schema": "https://code.claude.com/schemas/marketplace.json",
+  "name": "junior-agent",
+  "description": "Marketplace for the junior-agent Claude Code plugin",
+  "version": "0.1.0",
+  "owner": {
+    "name": "antoniowolkk",
+    "url": "https://github.com/antoniowolkk"
+  },
+  "plugins": [
+    {
+      "name": "junior-agent",
+      "source": "./",
+      "description": "Depth before speed. An AGENTS.md starter pack plus nine skills that route non-trivial engineering work through a matched playbook, named principles, and evidence-based verification. The human stays the merge authority.",
+      "version": "0.1.0",
+      "author": { "name": "antoniowolkk", "url": "https://github.com/antoniowolkk" },
+      "license": "MIT",
+      "homepage": "https://github.com/antoniowolkk/junior-agent",
+      "repository": "https://github.com/antoniowolkk/junior-agent"
+    }
+  ]
+}
