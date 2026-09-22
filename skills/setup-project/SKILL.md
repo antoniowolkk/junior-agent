@@ -39,6 +39,16 @@ Then link it so Claude Code picks it up:
 ln -s AGENTS.md CLAUDE.md
 ```
 
+When you copy the skills by hand rather than installing the plugin, write an install stamp beside them. `/update-pack` reads it as the base of a three-way compare; without it, a later update cannot tell a local edit from an upstream change.
+
+```bash
+printf '# junior-agent install stamp - do not edit by hand\nversion: %s\ncommit: %s\nsource: %s\ninstalled: %s\nmethod: copy\n' \
+  "$version" "$commit" "$source" "$(date +%F)" \
+  > <repo>/.claude/skills/.junior-agent-version
+```
+
+`version` comes from `.claude-plugin/plugin.json` in this pack, `commit` from `git rev-parse HEAD` in this pack's checkout, `source` from its `repository` field. If any of the three cannot be read, say which and write the stamp without guessing a value.
+
 ## 4. Pick a variant
 
 Choose from `templates/variants/` by what the repo actually is: `web-frontend`, `web-fullstack`, `backend-api`, `mobile-flutter`. Paste its sections over the matching sections of `AGENTS.md`. If none fits, say so and write the stack and conventions sections from the code instead.
@@ -63,6 +73,7 @@ Guardrails ship strict by default. Do not relax them during setup. If the human 
 - [ ] Every command in section 4 was run and works
 - [ ] `CLAUDE.md` symlink exists
 - [ ] Skills are installed and discoverable
+- [ ] Install stamp written, if the skills were copied rather than installed as a plugin
 - [ ] `docs/prd.md` written by a human
 - [ ] ADR 0001 dated
 - [ ] The human can answer: what business outcome does this project create?
