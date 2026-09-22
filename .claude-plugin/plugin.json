@@ -17,7 +17,9 @@
     "guardrails",
     "review",
     "verification",
-    "migrations"
+    "migrations",
+    "autonomy",
+    "scoping"
   ],
   "skills": "./skills/",
   "homepage": "https://github.com/antoniowolkk/junior-agent",

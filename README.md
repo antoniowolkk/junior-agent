@@ -43,6 +43,7 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | Path | What it is |
 | --- | --- |
 | `skills/rigor/` | The spine. Route the task, apply the principles, prove the result. |
+| `skills/delegate/` | How much to take unsupervised, what context to demand, how to prove it. |
 | `skills/reproduce/` | Turn a vague defect report into one deterministic failing test. |
 | `skills/investigate/` | How does this work, and why is it like this. Read-only, cited. |
 | `skills/architect/` | Types, signatures, and boundaries before code. |
