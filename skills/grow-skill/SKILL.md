@@ -152,9 +152,24 @@ pass.
 Branch name carries the mode: `skill/<name>` for **grow**, `backlog/<date>` for **propose**,
 `maintain/<skill>` for **maintain**.
 
+Before committing, append one entry to [`LEARNINGS.md`](../../LEARNINGS.md) with `Edit`, newest
+entry at the top (right after the `---`), in this shape:
+
+```
+## YYYY-MM-DD — <mode>: `<name>`
+
+Plain-language summary: what the gap or friction was, what was researched, what it concluded,
+in 3-6 sentences. Say plainly when a leg came up empty rather than omitting it.
+```
+
+Write this entry self-contained — no PR link, no PR number. Those don't exist yet at this point in
+the run, and a plan to add them in a follow-up commit is exactly how work has gone missing before:
+a second push to a branch whose PR already merged lands nowhere. The entry ships in the same commit
+as everything else in this step, so it can never be orphaned that way.
+
 ```bash
 git switch -c skill/<name>
-git add skills/<name> README.md BACKLOG.md
+git add skills/<name> README.md BACKLOG.md LEARNINGS.md
 git commit
 git push -u origin skill/<name>
 gh pr create --label agent-authored --draft
