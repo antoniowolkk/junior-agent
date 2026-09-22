@@ -18,6 +18,8 @@
     "review",
     "verification",
     "migrations",
+    "autonomy",
+    "scoping",
     "updates"
   ],
   "skills": "./skills/",
