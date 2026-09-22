@@ -63,6 +63,7 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | `docs/working-with-an-agent.md` | How to run a project with an agent when you do not code. |
 | `CONTRIBUTING-SKILLS.md` | The contract every skill must satisfy, human- or agent-written. |
 | `BACKLOG.md` | The queue `/grow-skill` works from. |
+| `LEARNINGS.md` | Plain-language record of every call: what was researched, what it concluded. |
 | `scripts/validate-skills.sh` | Mechanical checks on every `SKILL.md`. Run before any skill PR. |
 | `example/` | A complete filled-in project to copy the standard from. |
 
@@ -127,6 +128,10 @@ The guardrails are structural, not promises:
 - One skill per PR, opened as a draft, labelled `agent-authored`.
 - It stops before any research once six agent-authored pull requests are already open, and once
   the pack hits twelve skills only improving an existing one is left to do.
+- Every call appends one entry to [`LEARNINGS.md`](LEARNINGS.md) before it does anything else —
+  what it looked into and what it concluded, in plain language, self-contained in the same commit
+  so it never depends on a follow-up push. Read that file to catch up on the pack without reading
+  a single PR.
 
 Run it on demand, deliberately, whenever you want the pack to spend a real research cycle on
 something:
