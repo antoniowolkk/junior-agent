@@ -47,6 +47,7 @@ The growth agent may touch only:
 - `README.md` (the skills table only)
 - `.claude-plugin/plugin.json` (the `keywords` array only)
 - `BACKLOG.md`
+- `LEARNINGS.md` (append only, newest entry at the top — never edit or remove a past entry)
 
 It may not merge, force-push, edit `AGENTS.md` templates, rewrite existing skills beyond adding a
 cross-reference row, or change anything under `scripts/` or `.github/`.

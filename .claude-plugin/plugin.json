@@ -19,7 +19,8 @@
     "verification",
     "migrations",
     "autonomy",
-    "scoping"
+    "scoping",
+    "updates"
   ],
   "skills": "./skills/",
   "homepage": "https://github.com/antoniowolkk/junior-agent",
