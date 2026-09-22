@@ -9,7 +9,7 @@ Status values: `proposed` (idea, unresearched) · `researching` (agent claimed i
 | Status | Skill | Why it would earn a slot | Source |
 | --- | --- | --- | --- |
 | shipped | `reproduce` | `rigor` says "reproduce first" but gives no procedure for building a minimal deterministic repro from a vague report. | repo gap |
-| proposed | `migrate` | Schema and data migrations are the highest blast-radius change a junior agent makes, and no skill covers reversibility or backfill. | repo gap |
+| researching | `migrate` | Schema and data migrations are the highest blast-radius change a junior agent makes, and no skill covers reversibility or backfill. `AGENTS.md` section 7 stops on "write to, migrate, seed, or drop any database that is not a local throwaway" but nothing tells the agent how to plan the change it is asking permission for. Nearest existing skill is `blast-radius`, which analyses one diff rather than sequencing deploys. Checked this pack's own sessions for a corroborating friction pattern: none, every match was the backlog row itself or this run's own transcript, so the skill rests on the repo gap and the primary docs cited in it. | repo gap + web |
 | proposed | `bisect` | Regression hunting across history is mechanical and currently improvised every time. | repo gap |
 | proposed | `handoff` | Ending a session so the next one (or the next agent) resumes without re-deriving context. Complements `decision-log`. | repo gap |
 | proposed | `dependency-audit` | Adding a package is a guardrail stop in section 7, but nothing tells the agent how to evaluate one. | repo gap |

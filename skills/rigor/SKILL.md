@@ -19,6 +19,7 @@ This file is the spine. Reach for a companion when the route calls for it.
 | Understand code or its rationale before touching it | **investigate** |
 | Design types and boundaries before writing code | **architect** |
 | Know what a change breaks elsewhere | **blast-radius** |
+| Change a live schema or backfill its data | **migrate** |
 | Adversarial review of a diff or a design | **interrogate** |
 | Parallel fan-out over slices or competing approaches | **swarm** |
 | A reviewable trail for unattended work | **decision-log** |
