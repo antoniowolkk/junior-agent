@@ -79,6 +79,8 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | `skills/interrogate/` | Parallel adversarial review, synthesized into one verdict. |
 | `skills/swarm/` | Parallel fan-out over slices or competing approaches. |
 | `skills/decision-log/` | A reviewable TSV trail for unattended work. |
+| `skills/context-engineering/` | Keep the main thread lean: return contracts, targeted reads, compaction at phase boundaries. |
+| `skills/ai-eval/` | Accuracy for prompts, agents, RAG, and other non-deterministic AI features: a golden set and a regression gate. |
 | `skills/unslop/` | Cut AI tells from anything that ships. |
 | `skills/setup-project/` | Install this pack into a repo and fill it from the code. |
 | `skills/update-pack/` | Refresh an installed copy without clobbering local edits. Skills replaced, `AGENTS.md` never touched. |
@@ -234,7 +236,7 @@ The guardrails are structural, not promises:
   links, or README row are wrong.
 - One skill per PR, opened as a draft, labelled `agent-authored`.
 - It stops before any research once six agent-authored pull requests are already open, and once
-  the pack hits twelve skills only improving an existing one is left to do.
+  the pack hits twenty skills only improving an existing one is left to do.
 - Every call appends one entry to [`LEARNINGS.md`](LEARNINGS.md) before it does anything else —
   what it looked into and what it concluded, in plain language, self-contained in the same commit
   so it never depends on a follow-up push. Read that file to catch up on the pack without reading

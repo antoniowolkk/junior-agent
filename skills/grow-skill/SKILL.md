@@ -47,7 +47,7 @@ deliberate decision by a human to spend a real research cycle — so past the st
 section 0, prefer **grow** or **propose** over **abort**. Never fall through to **grow** because
 there is nothing else to do; do fall through to it because the research earned it.
 
-Check the cap before anything else in this section: count `skills/*/SKILL.md`. Twelve is the
+Check the cap before anything else in this section: count `skills/*/SKILL.md`. Twenty is the
 ceiling — at or past it, **grow** is off the table no matter what `BACKLOG.md` holds, and
 **maintain** is the only mode left. `BACKLOG.md` rows keep accumulating research either way; they
 just wait for a human to build them by hand, or for `maintain` to fold one into an existing skill.

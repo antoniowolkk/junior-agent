@@ -9,6 +9,28 @@ number exists, so it never depends on a follow-up commit to a branch that may al
 
 ---
 
+## 2026-09-23 — grow: `context-engineering` and `ai-eval`
+
+Two skills researched together, targeting the two axes the pack had not covered: context
+efficiency and accuracy for AI-built features. `context-engineering` turns `rigor`'s own "Guard the
+Context Window" principle into a procedure — `investigate`, `blast-radius`, and `swarm` all fan out
+and take findings back with no shared discipline for what a sub-task owes the caller. `BACKLOG.md`
+already had a narrower version of this (`context-budget`, sourced from `headroom`), but Anthropic's
+own September 2025 post on context engineering gave a stronger and more complete source: context
+rot as the underlying mechanism, and compaction, structured note-taking, and sub-agent contracts as
+the three countermeasures, so the shipped skill is named and scoped after that source rather than
+the narrower backlog row. `ai-eval` fills a gap the backlog had not scouted at all: `rigor`'s "Prove
+it works" table has no row for a prompt, agent, RAG pipeline, or classifier, where output is
+non-deterministic and the pack's own TDD rule ("assert a literal expected value") does not apply.
+Researched current golden-dataset and regression-eval practice (Langfuse, DeepEval) and a 2026 paper
+on the risk of iterating a prompt only against cases you can see, which shaped the held-out-slice
+step. Shipping both took the pack from 15 to 17 skills, past the previous 12-skill cap in
+`grow-skill`, which was already stale (the pack had shipped past it without the number being
+updated) and is now raised to 20 to give the backlog's remaining `proposed` rows room before the
+next cap conversation. Did not check this pack's own session logs for a corroborating friction
+pattern for either skill — both were written to a direct request rather than through a `/grow-skill`
+run, so both stand on the repo gap and the cited sources, not a third leg.
+
 ## 2026-09-22 — grow: `descope`
 
 The pack had a lot to say about building something well and nothing about not building it. `rigor`
