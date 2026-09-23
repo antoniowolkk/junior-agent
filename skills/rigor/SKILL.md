@@ -23,6 +23,7 @@ This file is the spine. Reach for a companion when the route calls for it.
 | Know what a change breaks elsewhere | **blast-radius** |
 | Change a live schema or backfill its data | **migrate** |
 | Adversarial review of a diff or a design | **interrogate** |
+| Audit a whole app or exposed surface for security holes | **threat-model** |
 | Parallel fan-out over slices or competing approaches | **swarm** |
 | A reviewable trail for unattended work | **decision-log** |
 | Keep the main thread lean across a long or fan-out-heavy task | **context-engineering** |
@@ -49,6 +50,7 @@ Before acting, name which of these the task is. Say it out loud in the first rep
 | New or changed behavior | **Feature** | Name the data shape first. Then the caller's usage. Then implement. If the output is non-deterministic (a prompt, agent, RAG pipeline, or classifier), define the golden set first — see **ai-eval**. |
 | Structure changes, behavior does not | **Refactor** | Record current output first. Move structure. Prove output unchanged. |
 | A design decision with no precedent | **Prototype** | Build 2–3 cheap competing sketches. Let the result decide. Throw them away. |
+| "Is this safe to expose", a security audit, or a pasted security checklist | **Security** | Map the attack surface. Walk the checks read-only. Prove each finding. Report; fix nothing in the same pass. See **threat-model**. |
 | A diff you want broken | **Review** | Adversarial pass. Sort findings into act-on / consider / dismissed, with a reason per dismissal. |
 | Work spanning phases or several PRs | **Multi-phase** | Write the phase plan before code. Each phase ends in a check. |
 | Long work the human steps away from | **Autonomous run** | See section 6. |

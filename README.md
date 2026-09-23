@@ -78,6 +78,7 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | `skills/architect/` | Types, signatures, and boundaries before code. |
 | `skills/blast-radius/` | What a change breaks elsewhere, proven by running code. |
 | `skills/migrate/` | Schema and data changes as a deploy sequence, with a proven down path. |
+| `skills/threat-model/` | Read-only security audit of the whole attack surface. Every finding proven, nothing fixed in the same pass. |
 | `skills/interrogate/` | Parallel adversarial review, synthesized into one verdict. |
 | `skills/swarm/` | Parallel fan-out over slices or competing approaches. |
 | `skills/decision-log/` | A reviewable TSV trail for unattended work. |
