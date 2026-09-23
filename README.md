@@ -24,6 +24,7 @@ Written so it works for someone who does not code. Section 7 of `AGENTS.md` is s
 - [What is in here](#what-is-in-here)
 - [The three rules that make it work](#the-three-rules-that-make-it-work)
 - [Why this instead of a bare agent](#why-this-instead-of-a-bare-agent)
+- [Does it actually help? (measured)](#does-it-actually-help-measured)
 - [Keep it alive](#keep-it-alive)
 - [Update an install](#update-an-install)
   - [If you installed the plugin](#if-you-installed-the-plugin)
@@ -96,6 +97,7 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | `BACKLOG.md` | The queue `/grow-skill` works from. |
 | `LEARNINGS.md` | Plain-language record of every call: what was researched, what it concluded. |
 | `scripts/validate-skills.sh` | Mechanical checks on every `SKILL.md`. Run before any skill PR. |
+| `scripts/bench/` | Measures whether installing junior changes the outcome on a fixed task, bare vs. junior, graded by a hidden test. Real numbers, not marketing. |
 | `example/` | A complete filled-in project to copy the standard from. |
 
 ## The three rules that make it work
@@ -123,6 +125,21 @@ Against **agent packs built for speed** (scaffold generators, autonomous PR bots
 Against **just being careful in your prompts**, the difference is that care is not a habit here, it is structure. Reproduce-before-fix and prove-against-the-real-thing hold on turn eighty of a long session, when your own attention has gone.
 
 The name is the point. A junior engineer who asks before doing anything permanent, writes the test first, and shows their evidence beats a "senior" one who moves fast and skips all three — every time, on a codebase you actually care about.
+
+## Does it actually help? (measured)
+
+Two synthetic bugs, each planted in a repo with a visible test suite that passes despite the bug. Same one-line prompt run headlessly through the real `claude` CLI, twice: once bare, once with `AGENTS.md` and the skills installed. A hidden test the agent never sees decides pass or fail. 16 runs total (n=8 per condition), `claude-sonnet-5`, 2026-09-23.
+
+| | bare | junior | delta |
+| --- | --- | --- | --- |
+| success rate | 8/8 | 8/8 | none detected |
+| avg wall-clock | 24.0s | 34.2s | +43% |
+| avg cost | $0.146 | $0.170 | +17% |
+| avg output tokens | 1448 | 2571 | +78% |
+
+Read plainly: no success-rate gap on these two bugs — both were within reach of the bare model on their own. What's real and consistent is the opposite of a flattering number — junior costs more time and tokens per task. That is the trade-off this README already names above: *the cost is speed*. Restating the task, reproducing before fixing, and reporting evidence before declaring done is real work, and it shows up here as real cost, not a hidden discount.
+
+This does not yet measure the pack's actual claim — that a bare agent will guess, declare victory on a green build, or take an irreversible action, and junior won't. Neither injected bug needed that catch; a strong model solved both unaided. See [`scripts/bench/README.md`](scripts/bench/README.md) for the full method, the two tasks, the limitations (small n, one model, one date), and how to run or extend it yourself.
 
 ## Keep it alive
 
