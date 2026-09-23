@@ -32,7 +32,7 @@ Written so it works for someone who does not code. Section 7 of `AGENTS.md` is s
   - [First run, no stamp](#first-run-no-stamp)
   - [Doing it by hand](#doing-it-by-hand)
 - [Before you start a project](#before-you-start-a-project)
-- [The pack grows itself](#the-pack-grows-itself)
+- [Grow the pack](#grow-the-pack)
 - [Credit](#credit)
 
 ## Install
@@ -84,7 +84,7 @@ New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-wit
 | `skills/unslop/` | Cut AI tells from anything that ships. |
 | `skills/setup-project/` | Install this pack into a repo and fill it from the code. |
 | `skills/update-pack/` | Refresh an installed copy without clobbering local edits. Skills replaced, `AGENTS.md` never touched. |
-| `skills/grow-skill/` | Research, write, and PR one new skill. The pack grows itself; you review. |
+| `skills/grow-skill/` | Research, write, and PR one new skill. You review before anything merges. |
 | `templates/AGENTS.md` | The main file. Rules, commands, conventions, guardrails. |
 | `templates/variants/` | Platform sections to paste in: frontend, fullstack, backend API, Flutter. |
 | `templates/docs/prd.md` | What to build and for whom. **Yours to write.** |
@@ -215,7 +215,7 @@ Read both diffs. Copy the skill files you want. Edit `AGENTS.md` yourself.
 - [ ] Skills installed and discoverable
 - [ ] You can answer: what business outcome does this project create?
 
-## The pack grows itself
+## Grow the pack
 
 Say "go learn," or run `/grow-skill`. One call, one topic, researched as deep as it goes, ending in
 one draft pull request — a new skill, or a real improvement to an existing one. It never merges.
