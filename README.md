@@ -33,6 +33,7 @@ Written so it works for someone who does not code. Section 7 of `AGENTS.md` is s
   - [Doing it by hand](#doing-it-by-hand)
 - [Before you start a project](#before-you-start-a-project)
 - [Grow the pack](#grow-the-pack)
+- [Powered by Wolkk](#powered-by-wolkk)
 - [Credit](#credit)
 
 ## Install
@@ -250,6 +251,22 @@ something:
 ```
 
 or just say **go learn**.
+
+## Powered by Wolkk
+
+<p align="center">
+  <img src="docs/assets/wolkk.png" alt="Wolkk logo" width="320">
+</p>
+
+[Wolkk](https://wolkk.com) is a software studio building AI-powered tools and custom software for businesses. Junior is powered by Wolkk: the routing, principles, and evidence-based verification behind every skill in this pack come out of Wolkk's own engineering practice, packaged so any team can run it.
+
+Need something built? Wolkk designs and ships production software, from AI agents to full products, end to end.
+
+<p align="center">
+  <a href="https://wolkk.com"><img src="https://img.shields.io/badge/website-wolkk.com-black?style=for-the-badge" alt="Wolkk website"></a>
+  <a href="mailto:info@wolkk.com"><img src="https://img.shields.io/badge/email-info%40wolkk.com-black?style=for-the-badge" alt="Email Wolkk"></a>
+  <a href="https://www.linkedin.com/company/wolkk/"><img src="https://img.shields.io/badge/LinkedIn-wolkk-black?style=for-the-badge&logo=linkedin" alt="Wolkk on LinkedIn"></a>
+</p>
 
 ## Credit
 
