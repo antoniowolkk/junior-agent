@@ -13,7 +13,7 @@ Two halves that need each other:
 - **The project files.** `AGENTS.md` is the agent's memory, the PRD says what, ADRs say why, tests say done.
 - **The skills.** How the agent actually works on anything non-trivial: routing, principles, evidence.
 
-It ships as a Claude Code plugin, but it is not Claude-only. The project files are plain Markdown: `AGENTS.md` is read natively by OpenAI Codex CLI and Cursor, and any other tool picks it up through a symlink. Only the slash-command invocation (`/rigor`, `/architect`) is Claude Code-specific — elsewhere the same method is reachable through `AGENTS.md` section 6b. See [Set up a project](#set-up-a-project).
+It ships as a Claude Code plugin, but it is not Claude-only. The project files are plain Markdown: `AGENTS.md` is read natively by OpenAI Codex CLI and Cursor, and any other tool picks it up through a symlink. Slash-command invocation (`/rigor`, `/architect`) works in Claude Code and in VS Code with GitHub Copilot. In other tools, you reach the same method through `AGENTS.md` section 6b. See [Set up a project](#set-up-a-project) and [Use it in VS Code](#use-it-in-vs-code).
 
 Written so it works for someone who does not code. Section 7 of `AGENTS.md` is strict by default, and the human is the merge authority.
 
@@ -21,6 +21,7 @@ Written so it works for someone who does not code. Section 7 of `AGENTS.md` is s
 
 - [Install](#install)
 - [Set up a project](#set-up-a-project)
+- [Use it in VS Code](#use-it-in-vs-code)
 - [What is in here](#what-is-in-here)
 - [The three rules that make it work](#the-three-rules-that-make-it-work)
 - [Why this instead of a bare agent](#why-this-instead-of-a-bare-agent)
@@ -65,6 +66,23 @@ By hand, six steps:
 6. **Write `docs/prd.md` yourself.** You know the users and the outcome. The agent does not. This is the highest-value thing a non-developer contributes.
 
 New to working this way? Read [`docs/working-with-an-agent.md`](docs/working-with-an-agent.md) first: order of work, prompts worth keeping, warning signs, a two-week checklist.
+
+## Use it in VS Code
+
+Which path you take depends on which agent you run inside VS Code.
+
+**Claude Code extension.** Same plugin, same install. Add the marketplace and install `junior-agent` from the extension's chat; plugins installed with `/plugin` in the terminal show up there too. Every skill works as a slash command.
+
+**GitHub Copilot Chat (agent mode).** Two options:
+
+- *Plugin (preview).* VS Code reads the Claude plugin format. Turn on `chat.plugins.enabled`, then run **Chat: Install Plugin From Source** from the Command Palette and enter `https://github.com/antoniowolkk/junior-agent`. Or add `antoniowolkk/junior-agent` to `chat.plugins.marketplaces`.
+- *Copied skills.* Copilot loads skills from `.claude/skills/`, `.github/skills/`, and `.agents/skills/`, so the copy command in [Install](#install) works as-is. Type `/` in chat to see them. Copilot also loads a skill on its own when your request matches the skill's description.
+
+For the project files, you don't need a symlink. Copilot reads `AGENTS.md` and `CLAUDE.md` from the workspace root on its own (settings `chat.useAgentsMdFile` and `chat.useClaudeMdFile`).
+
+**Cursor.** It reads `AGENTS.md` natively. Copy the skills in by hand.
+
+Section 7 of `AGENTS.md` still applies in all three. Copilot's own tool-approval prompts don't replace it.
 
 ## What is in here
 
@@ -229,7 +247,7 @@ Read both diffs. Copy the skill files you want. Edit `AGENTS.md` yourself.
 - [ ] No `<...>` placeholders left
 - [ ] Every command in section 4 actually runs
 - [ ] `docs/prd.md` filled in by a human
-- [ ] Symlink exists for every agent tool in use (`CLAUDE.md`, `GEMINI.md`, ...); not needed for Codex CLI or Cursor
+- [ ] Symlink exists for every agent tool in use (`CLAUDE.md`, `GEMINI.md`, ...); not needed for Codex CLI, Cursor, or VS Code Copilot
 - [ ] Skills installed and discoverable
 - [ ] You can answer: what business outcome does this project create?
 
