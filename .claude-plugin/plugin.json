@@ -1,6 +1,6 @@
 {
   "name": "junior-agent",
-  "description": "Depth before speed. An AGENTS.md starter pack plus nine skills that route non-trivial engineering work through a matched playbook, named principles, and evidence-based verification. The human stays the merge authority.",
+  "description": "Depth before speed. An AGENTS.md starter pack plus seventeen skills that route non-trivial engineering work through a matched playbook, named principles, and evidence-based verification. The human stays the merge authority.",
   "version": "0.1.0",
   "author": {
     "name": "antoniowolkk",
@@ -21,7 +21,9 @@
     "autonomy",
     "scoping",
     "yagni",
-    "updates"
+    "updates",
+    "context-engineering",
+    "evals"
   ],
   "skills": "./skills/",
   "homepage": "https://github.com/antoniowolkk/junior-agent",

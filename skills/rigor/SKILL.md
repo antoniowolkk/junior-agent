@@ -25,6 +25,8 @@ This file is the spine. Reach for a companion when the route calls for it.
 | Adversarial review of a diff or a design | **interrogate** |
 | Parallel fan-out over slices or competing approaches | **swarm** |
 | A reviewable trail for unattended work | **decision-log** |
+| Keep the main thread lean across a long or fan-out-heavy task | **context-engineering** |
+| Building or changing a prompt, agent, RAG pipeline, or other LLM-based feature | **ai-eval** |
 | Any prose that ships | **unslop** |
 | Install this pack into a repo | **setup-project** |
 | Add a new skill to this pack | **grow-skill** |
@@ -44,7 +46,7 @@ Before acting, name which of these the task is. Say it out loud in the first rep
 | A read-only question ("how does X work", "are we sure") | **Investigate** | Answer from cited evidence. Change no code. |
 | A defect | **Bug fix** | Reproduce first. Root-cause it. Fix. Re-run the reproduction. |
 | Measured slowness | **Perf** | Measure a baseline. Profile. Fix the measured cause. Show before and after. |
-| New or changed behavior | **Feature** | Name the data shape first. Then the caller's usage. Then implement. |
+| New or changed behavior | **Feature** | Name the data shape first. Then the caller's usage. Then implement. If the output is non-deterministic (a prompt, agent, RAG pipeline, or classifier), define the golden set first — see **ai-eval**. |
 | Structure changes, behavior does not | **Refactor** | Record current output first. Move structure. Prove output unchanged. |
 | A design decision with no precedent | **Prototype** | Build 2–3 cheap competing sketches. Let the result decide. Throw them away. |
 | A diff you want broken | **Review** | Adversarial pass. Sort findings into act-on / consider / dismissed, with a reason per dismissal. |
@@ -93,7 +95,7 @@ These are names, not paragraphs. The human uses a name to redirect you mid-task;
 - **Test Behavior, Not Implementation.** Call the code the way its users do. Assert a literal expected value. If the test would still pass when every imported function returns `undefined`, rewrite or delete it.
 
 **Working with sub-agents**
-- **Guard the Context Window.** Route bulk reading to sub-agents. Keep findings, not dumps, in the main thread.
+- **Guard the Context Window.** Route bulk reading to sub-agents. Keep findings, not dumps, in the main thread. See **context-engineering**.
 
 **Meta**
 - **Encode Lessons in Structure.** Caught yourself writing the same instruction twice? Make it a lint, a test, a type, or a script — not more prose.
@@ -112,6 +114,7 @@ Match the check to the change:
 | Performance | Compare before and after measurements. |
 | Storage | Read the written value back. |
 | Delegated work | Read the actual diff. Never the delegate's summary. |
+| AI/LLM feature (prompt, agent, RAG, classifier) | Run the golden set. Compare against the last-known baseline, not your own read of the output. See **ai-eval**. |
 
 Rules:
 
