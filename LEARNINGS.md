@@ -9,6 +9,10 @@ number exists, so it never depends on a follow-up commit to a branch that may al
 
 ---
 
+## 2026-09-23 — grow: `threat-model`
+
+Prompted by a viral "vibe code security" checklist: nineteen goals ("hide my API keys", "add rate limiting", "make no mistakes") with no steps and no proof, several of which (touching `.env`, changing CORS or auth, rewriting history, upgrading dependencies) are section 7 stops. The need behind it was real and already in the backlog: `rigor` had no security route, and `interrogate`'s security lens only covers a diff. Researched the OWASP Top 10:2025 (for check order, with access control first), OWASP's threat modeling, authorization and HTTP headers cheat sheets, the gitleaks docs, Supabase's RLS docs, and `strix`, whose "validated PoC only" stance shaped the proof ladder. Ran the secret-history grep, the header and CORS curl probes, and `npm audit --omit=dev --json` against throwaway targets in a scratch directory before writing them in as steps. `gitleaks` and `pip-audit` were not installed, so they appear as optional, not verified locally. The skill is read-only by design: the checklist's "add auth" and "remove what I don't need" are handed to `descope` rather than audited. Did not check this pack's own session logs for a friction pattern. The skill was written to a direct request, so it stands on the repo gap and the cited sources.
+
 ## 2026-09-23 — grow: `context-engineering` and `ai-eval`
 
 Two skills researched together, targeting the two axes the pack had not covered: context
