@@ -6,6 +6,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/); version
 ## [Unreleased]
 
 ### Added
+- Skills `spec`, `test-first`, `refactor`, `port`, `api-design`, `document`, `learn`, inspired
+  by the IBM Bob Modes catalog
+- Small additions to `reproduce`, `architect`, and `threat-model`
 - CI workflow validating all skill files on push/PR
 - Issue templates (bug report, feature request) and PR template
 - `SECURITY.md` vulnerability disclosure policy

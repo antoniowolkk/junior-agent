@@ -135,7 +135,7 @@ Section 7 of `AGENTS.md` still applies in all three. Copilot's own tool-approval
 
 **Powerful.** Section 6, TDD. The agent writes a failing test first, **you review the test**, then it writes code until the test passes. Reviewing a test is far easier than reviewing code: the test states in plain terms what the thing should do. If it says the wrong thing, you catch it before any code exists — while it is still one paragraph instead of four hundred lines. This is the main defense against an agent confidently building the wrong thing.
 
-Two things follow from those rules. **The context survives the session**: `AGENTS.md` holds rules, commands, and conventions, `docs/prd.md` holds the outcome, ADRs hold why a past decision was made, so the agent stops re-deriving the project from scratch and stops re-litigating decisions you already made. And **hard tasks get a named tool instead of a longer prompt**: tracing unfamiliar code, designing a boundary, finding what a change breaks, reviewing adversarially, running work unattended — each is a skill with its own method and output format, so the work is legible afterwards.
+Two things follow from those rules. **The context survives the session**: `AGENTS.md` holds rules, commands, and conventions, `docs/prd.md` holds the outcome, ADRs hold why a past decision was made, so the agent stops re-deriving the project from scratch and stops re-litigating decisions you already made. And **hard tasks get a named tool instead of a longer prompt**: tracing unfamiliar code, designing a boundary or an API, writing tests first, refactoring safely, porting to another language, finding what a change breaks, reviewing adversarially, running work unattended — each is a skill with its own method and output format, so the work is legible afterwards.
 
 **The cost is speed.** This produces less code per hour on purpose. Worth it when the code has to be right and you are the one merging it. Overhead on a throwaway script.
 
@@ -313,6 +313,6 @@ Need something built? Wolkk designs and ships production software, from AI agent
 
 ## Credit
 
-The method is adapted from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by poteto (Lauren Tan), MIT licensed, condensed and rewritten for Claude Code. The `AGENTS.md` / PRD / ADR structure comes from the "Agentic AI in the SDLC" workshop. See [`NOTICE`](NOTICE).
+The method is adapted from [pstack](https://github.com/cursor/plugins/tree/main/pstack) by poteto (Lauren Tan), MIT licensed, condensed and rewritten for Claude Code. The `AGENTS.md` / PRD / ADR structure comes from the "Agentic AI in the SDLC" workshop. The `spec`, `test-first`, `refactor`, `port`, `api-design`, `document`, and `learn` skills were inspired by the [IBM Bob Modes catalog](https://bob-modes.2azhe5jwptg4.au-syd.codeengine.appdomain.cloud) and written from scratch; no text was reused. See [`NOTICE`](NOTICE).
 
 MIT licensed. Fork it, improve it, make it yours.
