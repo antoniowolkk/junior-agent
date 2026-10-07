@@ -92,6 +92,7 @@ Report, in this order:
 3. The minimal case, and what was removed to get there.
 4. For intermittents: the failure rate, measured, and what forces it.
 5. What you could **not** reproduce, stated plainly. A null result is a result.
+6. Where the same defect shape could live elsewhere: grep for the pattern the minimal case exposed, and list each hit as **inferred** until it has its own test.
 
 Only now route to the fix. Root-cause it before changing a line; a reproduction narrows *where*,
 it does not tell you *why*.
@@ -112,3 +113,4 @@ it does not tell you *why*.
 - Andreas Zeller and Ralf Hildebrandt, ["Simplifying and Isolating Failure-Inducing Input"](https://www.cs.purdue.edu/homes/xyzhang/fall07/Papers/delta-debugging.pdf), IEEE TSE 28(2), 2002 — the `ddmin` algorithm and the Mozilla case behind step 3.
 - ["Reducing Failure-Inducing Inputs"](https://www.debuggingbook.org/html/DeltaDebugger.html), The Debugging Book — a runnable treatment of the same technique.
 - Step 4's table is a gap analysis of this repo plus the friction pattern in local session logs, where nondeterminism ("race condition", "flaky", "intermittent", "only fails in CI") dominates reproduction talk. Inferred, not measured.
+- IBM Bob Modes catalog, mode bug-fix — https://bob-modes.2azhe5jwptg4.au-syd.codeengine.appdomain.cloud (used as inspiration; no text reused)

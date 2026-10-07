@@ -68,6 +68,7 @@ Work in OWASP Top 10:2025 order, because that order reflects how often each clas
 | **Injection** (A05) | User input reaching a sink | Trace each input from phase 2 to where it ends up: SQL built by string concatenation, `innerHTML`, `dangerouslySetInnerHTML`, `v-html`, `eval`, shell exec, template render, a file path, or a URL the server fetches (SSRF). A finding names both the source line and the sink line. Client-side validation is not the boundary. |
 | **Authentication** (A07) | Session and token verification | JWTs are verified with the signature checked and the algorithm pinned. Sessions expire. Logout invalidates the session on the server. |
 | | Rate limiting | Login, signup, password reset, and any endpoint that sends email or SMS or costs money need a limit. Find where it is enforced, or report that it is missing. |
+| **Logging** (A09) | Secrets and personal data kept out of logs and error reports | Read the logger calls on auth, payment and form handlers. A token, password, or full request body written to a log is a finding. |
 | **Exceptional conditions** (A10) | Fail closed | An auth or permission check that throws should deny access, not let the request through. Read the catch blocks around the checks. |
 
 ## 4. Prove each finding
@@ -126,3 +127,4 @@ The **Gate** column says which section 7 stop or ADR each fix needs, so the huma
 - [gitleaks](https://github.com/gitleaks/gitleaks): `git` / `dir` subcommands, `--redact`, `--log-opts`.
 - [Supabase: Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security): an exposed table without RLS is open to anyone holding the key.
 - [strix](https://github.com/usestrix/strix): an AI pentest agent that reports only findings it has validated with a proof of concept. The model for phase 4.
+- IBM Bob Modes catalog, mode devsecops — https://bob-modes.2azhe5jwptg4.au-syd.codeengine.appdomain.cloud (used as inspiration; no text reused)
