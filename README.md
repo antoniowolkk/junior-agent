@@ -96,6 +96,13 @@ Section 7 of `AGENTS.md` still applies in all three. Copilot's own tool-approval
 | `skills/architect/` | Types, signatures, and boundaries before code. |
 | `skills/blast-radius/` | What a change breaks elsewhere, proven by running code. |
 | `skills/migrate/` | Schema and data changes as a deploy sequence, with a proven down path. |
+| `skills/spec/` | One change as testable Given/When/Then criteria, each mapped to a test. |
+| `skills/test-first/` | Red-green-refactor, which tests to write, and coverage as a signal, not a target. |
+| `skills/refactor/` | Change structure without changing behavior: pin it first, small proven steps. |
+| `skills/port/` | Convert code across languages, frameworks, or major versions with proven equivalence. |
+| `skills/api-design/` | Design the network contract before the code: errors, pagination, versioning, breaking changes. |
+| `skills/document/` | Docs that stay true: type chosen by reader, every claim cited, every example run. |
+| `skills/learn/` | Tutor the human through a language or codebase with exercises they write themselves. |
 | `skills/threat-model/` | Read-only security audit of the whole attack surface. Every finding proven, nothing fixed in the same pass. |
 | `skills/interrogate/` | Parallel adversarial review, synthesized into one verdict. |
 | `skills/swarm/` | Parallel fan-out over slices or competing approaches. |

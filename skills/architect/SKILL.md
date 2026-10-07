@@ -33,6 +33,8 @@ Screen every candidate for:
 - **Information leakage.** Two modules that must both change when one fact changes.
 - **Temporal decomposition.** Modules split by execution order instead of by what they know.
 - **Pass-through methods.** A function that only forwards to another with the same signature.
+- **Vocabulary drift.** Type and module names that differ from the words the domain, the tickets, and the users use for the same thing.
+- **Split invariants.** A rule that must always hold ("order total equals line sum") enforced across two modules, so neither can guarantee it alone.
 
 Compare survivors on interface depth. Prefer the design that hides more complexity behind a smaller public surface.
 
@@ -67,3 +69,8 @@ When you scrap: re-trace what was built, redesign as if the new constraints had 
 ## Output
 
 The caller's usage, the type sketch derived from it, and the module map for anything larger than one file. Alongside it: the alternative you rejected and the one sentence that decided it.
+
+## Sources
+
+- IBM Bob Modes catalog, mode ddd-architect — https://bob-modes.2azhe5jwptg4.au-syd.codeengine.appdomain.cloud (used as inspiration; no text reused)
+- IBM Bob Modes catalog, mode brainstorm — https://bob-modes.2azhe5jwptg4.au-syd.codeengine.appdomain.cloud (used as inspiration; no text reused)
